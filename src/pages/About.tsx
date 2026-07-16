@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Award, Heart, Users, Zap, CircleCheck as CheckCircle, ArrowRight } from 'lucide-react';
+import drSoumyaImg from '../assets/dr-soumya.png';
 
 const team = [
   {
@@ -8,7 +9,7 @@ const team = [
     role: 'Chief Dental Officer & Prosthodontist',
     qual: 'BDS, MDS (Prosthodontics) — 15+ Years',
     bio: 'Dr. Soumya is a highly accomplished prosthodontist with over 15 years of clinical excellence. She trained at leading dental institutions and specializes in smile makeovers, implants, and full-mouth rehabilitation. Her gentle approach and commitment to pain-free dentistry has earned her hundreds of loyal patients.',
-    img: 'https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=500',
+    img: drSoumyaImg,
     specialties: ['Dental Implants', 'Smile Makeover', 'Full Mouth Rehabilitation', 'Veneers & Crowns'],
   },
   {

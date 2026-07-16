@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Shield, Award, Clock, Users, Star, ChevronDown, CircleCheck as CheckCircle, Phone, Calendar, ArrowRight, MapPin, Zap, Heart, Smile } from 'lucide-react';
 import EnquiryForm from '../components/EnquiryForm';
 import video1 from '../assets/video1.mp4';
+import drSoumyaImg from '../assets/dr-soumya.png';
 
 
 const services = [
@@ -384,9 +385,9 @@ export default function Home() {
             >
               <div style={{ position: 'relative', borderRadius: 24, overflow: 'hidden' }}>
                 <img
-                  src="https://images.pexels.com/photos/6502306/pexels-photo-6502306.jpeg?auto=compress&cs=tinysrgb&w=700"
+                  src={drSoumyaImg}
                   alt="Dr. Soumya consulting patient"
-                  style={{ width: '100%', maxHeight: '650px', objectFit: 'cover', borderRadius: 24, display: 'block' }}
+                  style={{ width: '100%', maxHeight: '650px', objectFit: 'cover', objectPosition: 'top center', borderRadius: 24, display: 'block' }}
                 />
                 <div style={{
                   position: 'absolute',

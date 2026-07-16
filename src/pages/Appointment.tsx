@@ -188,6 +188,7 @@ export default function Appointment() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
+                className="form-container"
                 style={{
                   background: 'linear-gradient(135deg, #f0fdf4, #ecfdf5)',
                   border: '2px solid #86efac',
@@ -216,6 +217,7 @@ export default function Appointment() {
             ) : (
               <motion.form
                 id="appointment-form"
+                className="form-container"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7 }}
@@ -239,7 +241,7 @@ export default function Appointment() {
                   </div>
                 )}
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+                <div className="form-grid">
                   <FieldWrap icon={<User size={15} color="#0d9488" />} label="Patient Name *">
                     <input ref={nameInputRef} name="patient_name" value={form.patient_name} onChange={handleChange} placeholder="Full name" style={inputStyle} />
                   </FieldWrap>
@@ -252,7 +254,7 @@ export default function Appointment() {
                   <input name="email" value={form.email} onChange={handleChange} placeholder="your@email.com" type="email" style={inputStyle} />
                 </FieldWrap>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+                <div className="form-grid">
                   <FieldWrap icon={<Calendar size={15} color="#0d9488" />} label="Preferred Date *">
                     <input
                       name="preferred_date" value={form.preferred_date} onChange={handleChange}
@@ -303,6 +305,23 @@ export default function Appointment() {
           </div>
         </div>
       </section>
+
+      <style>{`
+        .form-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          margin-bottom: 16px;
+        }
+        @media (max-width: 640px) {
+          .form-grid {
+            grid-template-columns: 1fr;
+          }
+          .form-container {
+            padding: 24px 20px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

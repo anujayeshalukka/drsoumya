@@ -80,7 +80,7 @@ export default function EnquiryForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{
+    <form onSubmit={handleSubmit} className="form-container" style={{
       background: 'white',
       borderRadius: 24,
       padding: '36px',
@@ -101,7 +101,7 @@ export default function EnquiryForm() {
         }}>{error}</div>
       )}
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+      <div className="enquiry-form-grid">
         <div>
           <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 6 }}>
             Full Name <span style={{ color: '#ef4444' }}>*</span>
@@ -165,6 +165,23 @@ export default function EnquiryForm() {
       }}>
         {submitting ? 'Sending...' : (<><Send size={16} /> Send Enquiry</>)}
       </button>
+
+      <style>{`
+        .enquiry-form-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          margin-bottom: 16px;
+        }
+        @media (max-width: 640px) {
+          .enquiry-form-grid {
+            grid-template-columns: 1fr;
+          }
+          .form-container {
+            padding: 20px !important;
+          }
+        }
+      `}</style>
     </form>
   );
 }

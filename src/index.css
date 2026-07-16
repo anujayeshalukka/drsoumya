@@ -301,10 +301,6 @@ input:focus, textarea:focus, select:focus {
 
 /* WhatsApp floating button */
 .wa-float {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 9999;
   width: 60px;
   height: 60px;
   background: linear-gradient(135deg, #25d366, #128c7e);

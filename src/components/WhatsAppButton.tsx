@@ -15,7 +15,7 @@ export default function WhatsAppButton() {
   }, []);
 
   return (
-    <div style={{ position: 'fixed', bottom: 28, right: 28, zIndex: 9999 }}>
+    <div className="whatsapp-btn-wrapper" style={{ position: 'fixed', bottom: 28, right: 28, zIndex: 9999, transition: 'bottom 0.3s ease' }}>
       {/* Tooltip */}
       {tooltip && (
         <div style={{

@@ -860,8 +860,8 @@ export default function Home() {
 
               {[
                 { Icon: Phone, label: 'Call Us', value: '+91 98765 43210', href: 'tel:+919876543210' },
-                { Icon: MapPin, label: 'Visit Us', value: '123 Health Street, Medical Colony, Chennai - 600001', href: '#' },
-                { Icon: Clock, label: 'Hours', value: 'Mon–Sat: 9AM–8PM | Sun: 10AM–2PM', href: '#' },
+                { Icon: MapPin, label: 'Visit Us', value: 'Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Maradu, Ernakulam, Kerala 682304', href: '#' },
+                { Icon: Clock, label: 'Hours', value: 'Mon - Sat: 9:30 AM – 7:30 PM | Sun: Appointments only', href: '#' },
               ].map(({ Icon, label, value, href }) => (
                 <a key={label} href={href} style={{
                   display: 'flex', alignItems: 'flex-start', gap: 16,

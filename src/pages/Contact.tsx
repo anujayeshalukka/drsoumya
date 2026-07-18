@@ -34,7 +34,7 @@ export default function Contact() {
       {/* Contact cards */}
       <section style={{ padding: '64px 24px', background: '#f8fafc' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 20, marginBottom: 64 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 24, marginBottom: 64 }}>
             {[
               {
                 Icon: Phone,
@@ -47,23 +47,23 @@ export default function Contact() {
               {
                 Icon: Mail,
                 title: 'Email Us',
-                lines: ['info@drsoumyadental.com', 'appointments@drsoumyadental.com'],
-                href: 'mailto:info@drsoumyadental.com',
+                lines: ['info@drsoumyasdentalclinic.com', 'drsoumyasdentalclinic@gmail.com'],
+                href: 'mailto:drsoumyasdentalclinic@gmail.com',
                 gradient: 'linear-gradient(135deg, #f0fdfa, #ccfbf1)',
                 iconColor: '#0d9488',
               },
               {
                 Icon: MapPin,
                 title: 'Visit Us',
-                lines: ['123 Health Street', 'Medical Colony, Chennai – 600001'],
-                href: 'https://maps.google.com',
+                lines: ['Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Ernakulam, Kerala-682304'],
+                href: 'https://maps.google.com/?q=Johns+Arcade+Kundannoor+Ernakulam',
                 gradient: 'linear-gradient(135deg, #fff1f2, #ffe4e6)',
                 iconColor: '#e11d48',
               },
               {
                 Icon: Clock,
                 title: 'Working Hours',
-                lines: ['Mon–Sat: 9 AM – 8 PM', 'Sunday: 10 AM – 2 PM'],
+                lines: ['Mon - Sat: 9:30 AM – 7:30 PM', 'Sun: Appointments only'],
                 href: '#',
                 gradient: 'linear-gradient(135deg, #fffbeb, #fef3c7)',
                 iconColor: '#d97706',
@@ -107,7 +107,7 @@ export default function Contact() {
               <div style={{ borderRadius: 24, overflow: 'hidden', boxShadow: '0 8px 40px rgba(0,0,0,0.1)', marginBottom: 24, border: '1px solid #e5e7eb' }}>
                 <div style={{ background: '#e5e7eb', height: 340, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
                   <iframe
-                    src="https://maps.google.com/maps?q=Chennai+Tamil+Nadu+India&z=13&output=embed"
+                    src="https://maps.google.com/maps?q=Dr.Soumya's+Dental+Clinic,+Johns+Arcade,+Opp.+PS+Mission+Hospital,+Kundannoor,+Maradu,+Ernakulam,+Kerala+682304&z=13&output=embed"
                     width="100%"
                     height="340"
                     style={{ border: 0 }}
@@ -121,7 +121,7 @@ export default function Contact() {
                   <MapPin size={18} color="#0d9488" style={{ flexShrink: 0, marginTop: 2 }} />
                   <div>
                     <div style={{ fontWeight: 600, color: '#0d1b2e', fontSize: 14 }}>Dr. Soumya's Dental Clinic</div>
-                    <div style={{ color: '#64748b', fontSize: 13, lineHeight: 1.6 }}>123 Health Street, Medical Colony, Chennai – 600001, Tamil Nadu</div>
+                    <div style={{ color: '#64748b', fontSize: 13, lineHeight: 1.6 }}>Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Maradu, Ernakulam, Kerala 682304</div>
                   </div>
                 </div>
               </div>

@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, User, Phone, Mail, MessageSquare, CircleCheck as CheckCircle } from 'lucide-react';
-import { supabase } from '../lib/supabase';
 import { useLocation } from 'react-router-dom';
+import { countryCodes } from '../utils/countryCodes';
 
 const services = [
   'General Dentistry / Check-up',
@@ -18,7 +18,7 @@ const services = [
 ];
 
 const timeSlots = [
-  '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
+  '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
   '12:00 PM', '12:30 PM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM',
   '4:00 PM', '4:30 PM', '5:00 PM', '5:30 PM', '6:00 PM', '6:30 PM',
   '7:00 PM',
@@ -26,6 +26,7 @@ const timeSlots = [
 
 interface FormData {
   patient_name: string;
+  countryCode: string;
   phone: string;
   email: string;
   preferred_date: string;
@@ -35,7 +36,7 @@ interface FormData {
 }
 
 const INITIAL: FormData = {
-  patient_name: '', phone: '', email: '',
+  patient_name: '', countryCode: '+91', phone: '', email: '',
   preferred_date: '', preferred_time: '', service: '', message: '',
 };
 
@@ -83,10 +84,32 @@ export default function Appointment() {
       return;
     }
     setSubmitting(true);
-    const { error: dbError } = await supabase.from('appointments').insert([form]);
-    setSubmitting(false);
-    if (dbError) { setError('Something went wrong. Please try again.'); return; }
-    setSuccess(true);
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/drsoumyasdentalclinic@gmail.com", {
+        method: "POST",
+        headers: { 
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            _subject: `New Appointment Request from ${form.patient_name}`,
+            name: form.patient_name,
+            phone: `${form.countryCode} ${form.phone}`,
+            email: form.email,
+            date: form.preferred_date,
+            time: form.preferred_time,
+            service: form.service,
+            message: form.message || 'No message provided'
+        })
+      });
+      setSubmitting(false);
+      if (!response.ok) throw new Error('Failed to send');
+      setSuccess(true);
+      setForm(INITIAL);
+    } catch (err) {
+      setSubmitting(false);
+      setError('Something went wrong. Please try again.');
+    }
   };
 
   return (
@@ -155,9 +178,8 @@ export default function Appointment() {
                 }}>
                   <div style={{ fontWeight: 700, color: '#0d1b2e', marginBottom: 12, fontSize: 15 }}>Clinic Hours</div>
                   {[
-                    { day: 'Monday – Friday', time: '9:00 AM – 8:00 PM' },
-                    { day: 'Saturday', time: '9:00 AM – 6:00 PM' },
-                    { day: 'Sunday', time: '10:00 AM – 2:00 PM' },
+                    { day: 'Monday – Saturday', time: '9:30 AM – 7:30 PM' },
+                    { day: 'Sunday', time: 'Appointments only' },
                   ].map(({ day, time }) => (
                     <div key={day} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, fontSize: 13 }}>
                       <span style={{ color: '#475569' }}>{day}</span>
@@ -241,14 +263,21 @@ export default function Appointment() {
                   </div>
                 )}
 
-                <div className="form-grid">
-                  <FieldWrap icon={<User size={15} color="#0d9488" />} label="Patient Name *">
-                    <input ref={nameInputRef} name="patient_name" value={form.patient_name} onChange={handleChange} placeholder="Full name" style={inputStyle} />
-                  </FieldWrap>
-                  <FieldWrap icon={<Phone size={15} color="#0d9488" />} label="Phone Number *">
-                    <input name="phone" value={form.phone} onChange={handleChange} placeholder="+91 XXXXX XXXXX" type="tel" style={inputStyle} />
-                  </FieldWrap>
-                </div>
+                <FieldWrap icon={<User size={15} color="#0d9488" />} label="Patient Name *" style={{ marginBottom: 16 }}>
+                  <input ref={nameInputRef} name="patient_name" value={form.patient_name} onChange={handleChange} placeholder="Full name" style={inputStyle} />
+                </FieldWrap>
+                <FieldWrap icon={<Phone size={15} color="#0d9488" />} label="Phone Number *" style={{ marginBottom: 16 }}>
+                  <div style={{ display: 'flex', gap: 8 }}>
+                    <select name="countryCode" value={form.countryCode} onChange={handleChange} style={{ ...inputStyle, width: '90px', flexShrink: 0, padding: '12px 8px' }}>
+                      {countryCodes.map((c, i) => (
+                        <option key={i} value={c.code} disabled={c.code === '-'}>
+                          {c.code} {c.country !== '------------------' ? `(${c.country})` : c.country}
+                        </option>
+                      ))}
+                    </select>
+                    <input name="phone" value={form.phone} onChange={handleChange} placeholder="XXXXX XXXXX" type="tel" style={{ ...inputStyle, flexGrow: 1 }} />
+                  </div>
+                </FieldWrap>
 
                 <FieldWrap icon={<Mail size={15} color="#0d9488" />} label="Email Address *" style={{ marginBottom: 16 }}>
                   <input name="email" value={form.email} onChange={handleChange} placeholder="your@email.com" type="email" style={inputStyle} />

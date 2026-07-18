@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Send, CircleCheck as CheckCircle } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { countryCodes } from '../utils/countryCodes';
 
 const services = [
   'General Dentistry',
@@ -17,13 +17,14 @@ const services = [
 
 interface FormData {
   full_name: string;
+  countryCode: string;
   phone: string;
   email: string;
   service_interested: string;
   message: string;
 }
 
-const INITIAL: FormData = { full_name: '', phone: '', email: '', service_interested: '', message: '' };
+const INITIAL: FormData = { full_name: '', countryCode: '+91', phone: '', email: '', service_interested: '', message: '' };
 
 export default function EnquiryForm() {
   const [form, setForm] = useState<FormData>(INITIAL);
@@ -43,11 +44,31 @@ export default function EnquiryForm() {
       return;
     }
     setSubmitting(true);
-    const { error: dbError } = await supabase.from('enquiries').insert([form]);
-    setSubmitting(false);
-    if (dbError) { setError('Something went wrong. Please try again.'); return; }
-    setSuccess(true);
-    setForm(INITIAL);
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/drsoumyasdentalclinic@gmail.com", {
+        method: "POST",
+        headers: { 
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            _subject: `New Enquiry from ${form.full_name}`,
+            name: form.full_name,
+            phone: `${form.countryCode} ${form.phone}`,
+            email: form.email,
+            service: form.service_interested || 'Not specified',
+            message: form.message
+        })
+      });
+      setSubmitting(false);
+      if (!response.ok) throw new Error('Failed to send');
+      setSuccess(true);
+      setForm(INITIAL);
+    } catch (err) {
+      setSubmitting(false);
+      setError('Something went wrong. Please try again.');
+    }
   };
 
   if (success) {
@@ -101,25 +122,35 @@ export default function EnquiryForm() {
         }}>{error}</div>
       )}
 
-      <div className="enquiry-form-grid">
-        <div>
-          <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 6 }}>
-            Full Name <span style={{ color: '#ef4444' }}>*</span>
-          </label>
-          <input
-            name="full_name" value={form.full_name} onChange={handleChange}
-            placeholder="Your full name"
-            style={inputStyle}
-          />
-        </div>
-        <div>
-          <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 6 }}>
-            Phone <span style={{ color: '#ef4444' }}>*</span>
-          </label>
+      <div style={{ marginBottom: 16 }}>
+        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 6 }}>
+          Full Name <span style={{ color: '#ef4444' }}>*</span>
+        </label>
+        <input
+          name="full_name" value={form.full_name} onChange={handleChange}
+          placeholder="Your full name"
+          style={inputStyle}
+        />
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 6 }}>
+          Phone <span style={{ color: '#ef4444' }}>*</span>
+        </label>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <select
+            name="countryCode" value={form.countryCode} onChange={handleChange}
+            style={{ ...inputStyle, width: '90px', flexShrink: 0, paddingLeft: 8, paddingRight: 8 }}
+          >
+            {countryCodes.map((c, i) => (
+              <option key={i} value={c.code} disabled={c.code === '-'}>
+                {c.code} {c.country !== '------------------' ? `(${c.country})` : c.country}
+              </option>
+            ))}
+          </select>
           <input
             name="phone" value={form.phone} onChange={handleChange}
-            placeholder="+91 XXXXX XXXXX" type="tel"
-            style={inputStyle}
+            placeholder="XXXXX XXXXX" type="tel"
+            style={{ ...inputStyle, flexGrow: 1 }}
           />
         </div>
       </div>

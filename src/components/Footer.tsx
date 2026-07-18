@@ -148,10 +148,10 @@ export default function Footer() {
             <h4 style={{ color: 'white', fontWeight: 600, fontSize: 15, marginBottom: 20, letterSpacing: '0.5px' }}>Contact Info</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[
-                { Icon: MapPin, text: '123 Health Street, Medical Colony, Chennai - 600001, Tamil Nadu' },
+                { Icon: MapPin, text: 'Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Maradu, Ernakulam, Kerala 682304' },
                 { Icon: Phone, text: '+91 98765 43210' },
-                { Icon: Mail, text: 'info@drsoumyadental.com' },
-                { Icon: Clock, text: 'Mon–Sat: 9:00 AM – 8:00 PM\nSun: 10:00 AM – 2:00 PM' },
+                { Icon: Mail, text: 'info@drsoumyasdentalclinic.com\ndrsoumyasdentalclinic@gmail.com' },
+                { Icon: Clock, text: 'Mon - Sat: 9:30 AM – 7:30 PM\nSun: Appointments only' },
               ].map(({ Icon, text }, i) => (
                 <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                   <div style={{

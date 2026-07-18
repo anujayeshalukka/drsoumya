@@ -54,8 +54,8 @@ export default function Navbar() {
             transition: 'height 0.3s ease',
           }}>
             {/* Logo */}
-            <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start' }}>
-              <Link to="/" style={{ textDecoration: 'none', display: 'block', position: 'relative', height: 60, width: 60, transition: 'all 0.3s ease', transform: 'scale(2.5)', transformOrigin: 'left center' }}>
+            <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+              <Link to="/" className={`logo-container ${scrolled ? 'scrolled' : ''}`}>
                 <img
                   src={logo}
                   alt="Dr. Soumya's Dental Clinic"
@@ -214,9 +214,31 @@ export default function Navbar() {
 
       {/* Mobile CSS override */}
       <style>{`
+        .logo-container {
+          display: block;
+          position: relative;
+          height: 50px;
+          width: 150px;
+          transition: all 0.3s ease;
+          transform-origin: left center;
+          /* On desktop, keep it large */
+          transform: scale(1.4) translateX(10px);
+        }
+        .logo-container.scrolled {
+          transform: scale(1.1) translateX(10px);
+        }
+
         @media (max-width: 900px) {
           .mobile-menu-btn { display: flex !important; align-items: center; }
           .mobile-hidden { display: none !important; }
+          
+          /* On mobile, adjust the scale so it fits the viewport */
+          .logo-container {
+            transform: scale(1.1);
+          }
+          .logo-container.scrolled {
+            transform: scale(0.9);
+          }
         }
       `}</style>
     </>

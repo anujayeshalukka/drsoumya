@@ -51,7 +51,7 @@ export default function Footer() {
                 { Icon: SocialInstagram, href: 'https://www.instagram.com/dr.soumyas.dental.clinic?utm_source=qr&igsh=MWw3NnhidzZlcXM4OQ%3D%3D' },
                 { Icon: SocialYoutube, href: '#' },
               ].map(({ Icon, href }, i) => (
-                <a key={i} href={href} style={{
+                <a key={i} href={href} target="_blank" rel="noopener noreferrer" style={{
                   width: 38, height: 38,
                   background: 'rgba(255,255,255,0.07)',
                   border: '1px solid rgba(255,255,255,0.1)',

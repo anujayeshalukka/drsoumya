@@ -137,16 +137,21 @@ export default function EnquiryForm() {
           Phone <span style={{ color: '#ef4444' }}>*</span>
         </label>
         <div style={{ display: 'flex', gap: 8 }}>
-          <select
-            name="countryCode" value={form.countryCode} onChange={handleChange}
-            style={{ ...inputStyle, width: '90px', flexShrink: 0, paddingLeft: 8, paddingRight: 8 }}
-          >
-            {countryCodes.map((c, i) => (
-              <option key={i} value={c.code} disabled={c.code === '-'}>
-                {c.code} {c.country !== '------------------' ? `(${c.country})` : c.country}
-              </option>
-            ))}
-          </select>
+          <div style={{ position: 'relative', width: '105px', flexShrink: 0 }}>
+            <select
+              name="countryCode" value={form.countryCode} onChange={handleChange}
+              style={{ ...inputStyle, width: '100%', paddingLeft: 8, paddingRight: 24, appearance: 'none', WebkitAppearance: 'none' }}
+            >
+              {countryCodes.map((c, i) => (
+                <option key={i} value={c.code} disabled={c.code === '-'}>
+                  {c.code} {c.country !== '------------------' ? `(${c.country})` : c.country}
+                </option>
+              ))}
+            </select>
+            <div style={{ position: 'absolute', right: 2, top: 2, bottom: 2, width: 24, background: 'white', pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0 6px 6px 0' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
           <input
             name="phone" value={form.phone} onChange={handleChange}
             placeholder="XXXXX XXXXX" type="tel"

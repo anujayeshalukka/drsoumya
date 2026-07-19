@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Award, Heart, Users, Zap, CircleCheck as CheckCircle, ArrowRight } from 'lucide-react';
 import drSoumyaImg from '../assets/dr-soumya.png';
+import interiorImg from '../assets/interior.png';
 
 const team = [
   {
@@ -13,15 +14,15 @@ const team = [
     specialties: ['Dental Implants', 'Smile Makeover', 'Full Mouth Rehabilitation', 'Veneers & Crowns'],
   },
   {
-    name: 'Dr. Arjun Krishnamurthy',
+    name: 'Dr. Anju Krishnamurthy',
     role: 'Orthodontist',
     qual: 'BDS, MDS (Orthodontics) — 10+ Years',
-    bio: 'Dr. Arjun is our resident orthodontics specialist with a passion for creating perfectly aligned smiles. He is certified in both traditional braces and invisible aligners (Invisalign), treating patients from teens to adults.',
+    bio: 'Dr. Anju is our resident orthodontics specialist with a passion for creating perfectly aligned smiles. He is certified in both traditional braces and invisible aligners (Invisalign), treating patients from teens to adults.',
     img: 'https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=500',
     specialties: ['Traditional Braces', 'Invisible Aligners', 'Retainers', 'Pediatric Orthodontics'],
   },
   {
-    name: 'Dr. Preeth Nair',
+    name: 'Dr. Antony Joy',
     role: 'Endodontist',
     qual: 'BDS, MDS (Endodontics) — 8+ Years',
     bio: 'Dr. Preethi specializes in root canal treatments and endodontic surgery. Her precision technique and use of rotary endodontic instruments makes even complex root canals quick and painless.',
@@ -29,7 +30,7 @@ const team = [
     specialties: ['Root Canal Treatment', 'Endodontic Surgery', 'Dental Trauma', 'Pain Management'],
   },
   {
-    name: 'Dr. Suresh Balasubramanian',
+    name: 'Dr. Rimi Antony',
     role: 'Pediatric Dentist',
     qual: 'BDS, MDS (Pedodontics) — 9+ Years',
     bio: 'Dr. Suresh is beloved by his young patients for his patient, playful approach to dentistry. He specializes in making children feel safe and comfortable, building positive dental habits from an early age.',
@@ -121,7 +122,7 @@ export default function About() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 60, alignItems: 'center' }}>
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <img
-                src="https://images.pexels.com/photos/3845653/pexels-photo-3845653.jpeg?auto=compress&cs=tinysrgb&w=700"
+                src={interiorImg}
                 alt="Modern dental clinic interior"
                 style={{ width: '100%', borderRadius: 24, boxShadow: '0 20px 60px rgba(0,0,0,0.1)' }}
               />
@@ -196,8 +197,10 @@ export default function About() {
       <section style={{ padding: '80px 24px', background: '#f8fafc' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 56 }}>
-            <div style={{ display: 'inline-block', background: 'linear-gradient(135deg, #e0f2fe, #ccfbf1)', borderRadius: 50, padding: '6px 16px', fontSize: 13, color: '#0d9488', fontWeight: 600, marginBottom: 16 }}>
-              Meet the Experts
+            <div>
+              <div style={{ display: 'inline-block', background: 'linear-gradient(135deg, #e0f2fe, #ccfbf1)', borderRadius: 50, padding: '6px 16px', fontSize: 13, color: '#0d9488', fontWeight: 600, marginBottom: 16 }}>
+                Meet the Experts
+              </div>
             </div>
             <h2 className="section-title" style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(26px, 3vw, 38px)', fontWeight: 700, color: '#0d1b2e' }}>
               Our Dental Specialists

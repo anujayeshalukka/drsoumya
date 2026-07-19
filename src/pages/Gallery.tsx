@@ -3,14 +3,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { X, ChevronLeft, ChevronRight, Calendar, ZoomIn } from 'lucide-react';
 
+
 const categories = ['All', 'Teeth Whitening', 'Dental Implants', 'Veneers & Cosmetic', 'Orthodontics', 'Smile Makeover'];
 
 const gallery = [
   {
     id: 1,
     category: 'Teeth Whitening',
-    beforeImg: 'https://images.pexels.com/photos/3762453/pexels-photo-3762453.jpeg?auto=compress&cs=tinysrgb&w=500',
-    afterImg: 'https://images.pexels.com/photos/3762469/pexels-photo-3762469.jpeg?auto=compress&cs=tinysrgb&w=500',
+    beforeImg: '/teethwhitening1.jpg',
+    afterImg: '/teethwhitening2.jpg',
     patient: 'Patient A',
     desc: 'Professional in-office teeth whitening — 8 shades brighter in 90 minutes.',
     treatment: 'Zoom Whitening',
@@ -19,8 +20,8 @@ const gallery = [
   {
     id: 2,
     category: 'Dental Implants',
-    beforeImg: 'https://images.pexels.com/photos/6502304/pexels-photo-6502304.jpeg?auto=compress&cs=tinysrgb&w=500',
-    afterImg: 'https://images.pexels.com/photos/6502306/pexels-photo-6502306.jpeg?auto=compress&cs=tinysrgb&w=500',
+    beforeImg: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=compress&cs=tinysrgb&w=600',
+    afterImg: 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=compress&cs=tinysrgb&w=600',
     patient: 'Patient B',
     desc: 'Missing upper front tooth replaced with a titanium dental implant and ceramic crown.',
     treatment: 'Single Tooth Implant',
@@ -29,8 +30,8 @@ const gallery = [
   {
     id: 3,
     category: 'Veneers & Cosmetic',
-    beforeImg: 'https://images.pexels.com/photos/3779695/pexels-photo-3779695.jpeg?auto=compress&cs=tinysrgb&w=500',
-    afterImg: 'https://images.pexels.com/photos/5327921/pexels-photo-5327921.jpeg?auto=compress&cs=tinysrgb&w=500',
+    beforeImg: '/cosmetic1.jpg',
+    afterImg: '/cosmetic2.jpg',
     patient: 'Patient C',
     desc: 'Six porcelain veneers placed on upper front teeth for a complete smile transformation.',
     treatment: 'Porcelain Veneers',
@@ -39,8 +40,8 @@ const gallery = [
   {
     id: 4,
     category: 'Orthodontics',
-    beforeImg: 'https://images.pexels.com/photos/5327580/pexels-photo-5327580.jpeg?auto=compress&cs=tinysrgb&w=500',
-    afterImg: 'https://images.pexels.com/photos/6749773/pexels-photo-6749773.jpeg?auto=compress&cs=tinysrgb&w=500',
+    beforeImg: '/Orthodontics1.jpg',
+    afterImg: '/Orthodontics2.jpg',
     patient: 'Patient D',
     desc: 'Severe crowding and misalignment corrected with 18 months of ceramic braces.',
     treatment: 'Ceramic Braces',
@@ -49,8 +50,8 @@ const gallery = [
   {
     id: 5,
     category: 'Smile Makeover',
-    beforeImg: 'https://images.pexels.com/photos/3762453/pexels-photo-3762453.jpeg?auto=compress&cs=tinysrgb&w=500',
-    afterImg: 'https://images.pexels.com/photos/6502305/pexels-photo-6502305.jpeg?auto=compress&cs=tinysrgb&w=500',
+    beforeImg: 'https://plus.unsplash.com/premium_photo-1681966962522-546f370bc98e?auto=compress&cs=tinysrgb&w=600',
+    afterImg: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=compress&cs=tinysrgb&w=600',
     patient: 'Patient E',
     desc: 'Full smile makeover combining whitening, composite bonding, and gum contouring.',
     treatment: 'Full Smile Makeover',
@@ -59,8 +60,8 @@ const gallery = [
   {
     id: 6,
     category: 'Veneers & Cosmetic',
-    beforeImg: 'https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=500',
-    afterImg: 'https://images.pexels.com/photos/3762469/pexels-photo-3762469.jpeg?auto=compress&cs=tinysrgb&w=500',
+    beforeImg: '/Veneers1.jpg',
+    afterImg: 'https://images.unsplash.com/photo-1599566219227-2efe0c9b7f5f?auto=compress&cs=tinysrgb&w=600',
     patient: 'Patient F',
     desc: 'Composite bonding used to close gaps and reshape teeth for a natural, even smile.',
     treatment: 'Composite Bonding',

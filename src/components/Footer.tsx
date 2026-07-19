@@ -48,7 +48,7 @@ export default function Footer() {
             <div style={{ display: 'flex', gap: 12 }}>
               {[
                 { Icon: SocialFacebook, href: '#' },
-                { Icon: SocialInstagram, href: '#' },
+                { Icon: SocialInstagram, href: 'https://www.instagram.com/dr.soumyas.dental.clinic?utm_source=qr&igsh=MWw3NnhidzZlcXM4OQ%3D%3D' },
                 { Icon: SocialYoutube, href: '#' },
               ].map(({ Icon, href }, i) => (
                 <a key={i} href={href} style={{

@@ -56,7 +56,7 @@ export default function Contact() {
                 Icon: MapPin,
                 title: 'Visit Us',
                 lines: ['Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Ernakulam, Kerala-682304'],
-                href: 'https://maps.google.com/?q=Johns+Arcade+Kundannoor+Ernakulam',
+                href: 'https://maps.app.goo.gl/vYQXXwXyDi3qpxH97',
                 gradient: 'linear-gradient(135deg, #fff1f2, #ffe4e6)',
                 iconColor: '#e11d48',
               },
@@ -107,22 +107,48 @@ export default function Contact() {
               <div style={{ borderRadius: 24, overflow: 'hidden', boxShadow: '0 8px 40px rgba(0,0,0,0.1)', marginBottom: 24, border: '1px solid #e5e7eb' }}>
                 <div style={{ background: '#e5e7eb', height: 340, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
                   <iframe
-                    src="https://maps.google.com/maps?q=Dr.Soumya's+Dental+Clinic,+Johns+Arcade,+Opp.+PS+Mission+Hospital,+Kundannoor,+Maradu,+Ernakulam,+Kerala+682304&z=13&output=embed"
+                    src="https://maps.google.com/maps?q=9.9382425,76.3223138+(Dr.+Soumya's+Dental+Clinic)&z=17&output=embed"
                     width="100%"
                     height="340"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Clinic Location Map"
+                    title="Dr. Soumya's Dental Clinic Location Map"
                   />
                 </div>
-                <div style={{ padding: '20px 24px', background: 'white', display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-                  <MapPin size={18} color="#0d9488" style={{ flexShrink: 0, marginTop: 2 }} />
-                  <div>
-                    <div style={{ fontWeight: 600, color: '#0d1b2e', fontSize: 14 }}>Dr. Soumya's Dental Clinic</div>
-                    <div style={{ color: '#64748b', fontSize: 13, lineHeight: 1.6 }}>Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Maradu, Ernakulam, Kerala 682304</div>
+                <div style={{ padding: '20px 24px', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+                    <MapPin size={18} color="#0d9488" style={{ flexShrink: 0, marginTop: 2 }} />
+                    <div>
+                      <div style={{ fontWeight: 600, color: '#0d1b2e', fontSize: 14 }}>Dr. Soumya's Dental Clinic</div>
+                      <div style={{ color: '#64748b', fontSize: 13, lineHeight: 1.6 }}>Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Maradu, Ernakulam, Kerala 682304</div>
+                    </div>
                   </div>
+                  <a
+                    href="https://maps.app.goo.gl/vYQXXwXyDi3qpxH97"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      background: '#0d9488',
+                      color: 'white',
+                      padding: '8px 16px',
+                      fontSize: 13,
+                      fontWeight: 600,
+                      borderRadius: 10,
+                      textDecoration: 'none',
+                      whiteSpace: 'nowrap',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 6,
+                      boxShadow: '0 2px 10px rgba(13,148,136,0.25)',
+                      transition: 'background 0.2s',
+                    }}
+                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#0f766e'}
+                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = '#0d9488'}
+                  >
+                    Open in Maps ↗
+                  </a>
                 </div>
               </div>
 

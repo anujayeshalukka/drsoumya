@@ -148,7 +148,7 @@ export default function Footer() {
             <h4 style={{ color: 'white', fontWeight: 600, fontSize: 15, marginBottom: 20, letterSpacing: '0.5px' }}>Contact Info</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[
-                { Icon: MapPin, text: 'Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Maradu, Ernakulam, Kerala 682304', href: 'https://maps.google.com/?q=Johns+Arcade+Kundannoor+Ernakulam' },
+                { Icon: MapPin, text: 'Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Maradu, Ernakulam, Kerala 682304', href: 'https://maps.app.goo.gl/vYQXXwXyDi3qpxH97' },
                 { Icon: Phone, text: '+91 81388 87081', href: 'tel:+918138887081' },
                 { Icon: Mail, text: 'info@drsoumyasdentalclinic.com\ndrsoumyasdentalclinic@gmail.com', href: 'mailto:drsoumyasdentalclinic@gmail.com' },
                 { Icon: Clock, text: 'Mon - Sat: 9:30 AM – 7:30 PM\nSun: Appointments only' },

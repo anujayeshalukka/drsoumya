@@ -860,7 +860,7 @@ export default function Home() {
 
               {[
                 { Icon: Phone, label: 'Call Us', value: '+91 81388 87081', href: 'tel:+918138887081' },
-                { Icon: MapPin, label: 'Visit Us', value: 'Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Maradu, Ernakulam, Kerala 682304', href: '#' },
+                { Icon: MapPin, label: 'Visit Us', value: 'Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Maradu, Ernakulam, Kerala 682304', href: 'https://maps.app.goo.gl/vYQXXwXyDi3qpxH97' },
                 { Icon: Clock, label: 'Hours', value: 'Mon - Sat: 9:30 AM – 7:30 PM | Sun: Appointments only', href: '#' },
               ].map(({ Icon, label, value, href }) => (
                 <a key={label} href={href} style={{

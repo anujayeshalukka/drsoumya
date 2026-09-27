@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
-import logo from '../assets/logo.png';
 
 
 const SocialFacebook = () => (
@@ -33,10 +32,10 @@ export default function Footer() {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: 20 }}>
               <img 
-                src={logo} 
+                src="/logo.png" 
                 alt="Dr. Soumya's Dental Clinic" 
                 style={{ 
-                  height: 44, 
+                  height: 48, 
                   width: 'auto', 
                   objectFit: 'contain',
                 }} 

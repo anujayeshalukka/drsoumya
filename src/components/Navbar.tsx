@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
-import logo from '../assets/logo.png';
-import logo2 from '../assets/logo2.png';
 
 const navLinks = [
   { label: 'Home', path: '/' },
@@ -57,35 +55,13 @@ export default function Navbar() {
             <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
               <Link to="/" className={`logo-container ${scrolled ? 'scrolled' : ''}`}>
                 <img
-                  src={logo}
+                  src="/logo.png"
                   alt="Dr. Soumya's Dental Clinic"
                   style={{
                     height: '100%',
                     width: 'auto',
                     objectFit: 'contain',
-                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                    opacity: scrolled ? 0 : 1,
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    transform: scrolled ? 'translateY(-10px)' : 'translateY(0)',
-                    pointerEvents: scrolled ? 'none' : 'auto',
-                  }}
-                />
-                <img
-                  src={logo2}
-                  alt="Dr. Soumya's Dental Clinic"
-                  style={{
-                    height: '100%',
-                    width: 'auto',
-                    objectFit: 'contain',
-                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                    opacity: scrolled ? 1 : 0,
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    transform: scrolled ? 'translateY(0)' : 'translateY(10px)',
-                    pointerEvents: scrolled ? 'auto' : 'none',
+                    transition: 'all 0.3s ease',
                   }}
                 />
               </Link>

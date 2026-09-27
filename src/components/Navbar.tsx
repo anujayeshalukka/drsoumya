@@ -61,7 +61,27 @@ export default function Navbar() {
                     height: '100%',
                     width: 'auto',
                     objectFit: 'contain',
-                    transition: 'all 0.3s ease',
+                    transition: 'opacity 0.3s ease',
+                    opacity: scrolled ? 0 : 1,
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    pointerEvents: scrolled ? 'none' : 'auto',
+                  }}
+                />
+                <img
+                  src="/favicon.png"
+                  alt="Dr. Soumya's Dental Clinic"
+                  style={{
+                    height: '100%',
+                    width: 'auto',
+                    objectFit: 'contain',
+                    transition: 'opacity 0.3s ease',
+                    opacity: scrolled ? 1 : 0,
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    pointerEvents: scrolled ? 'auto' : 'none',
                   }}
                 />
               </Link>

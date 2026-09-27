@@ -188,7 +188,7 @@ export default function Contact() {
                 <div>
                   <div style={{ fontWeight: 700, color: '#9a3412', fontSize: 14, marginBottom: 4 }}>Dental Emergency?</div>
                   <div style={{ color: '#7c2d12', fontSize: 13, lineHeight: 1.6 }}>
-                    For urgent dental pain, broken teeth, or trauma, call us immediately at <strong>+91 81388 87081</strong>. We offer same-day emergency appointments.
+                    For urgent dental pain, broken teeth, or trauma, call us immediately at <strong style={{ whiteSpace: 'nowrap' }}><a href="tel:+918138887081" style={{ color: '#9a3412', textDecoration: 'underline' }}>+91 81388 87081</a></strong>. We offer same-day emergency appointments.
                   </div>
                 </div>
               </div>

@@ -194,12 +194,12 @@ export default function Appointment() {
                     <span style={{ fontWeight: 700, color: '#9a3412', fontSize: 14 }}>Dental Emergency?</span>
                   </div>
                   <p style={{ color: '#7c2d12', fontSize: 13, marginBottom: 10 }}>Call us immediately for same-day emergency care.</p>
-                  <a href="tel:+919876543210" style={{
+                  <a href="tel:+918138887081" style={{
                     display: 'flex', alignItems: 'center', gap: 8,
                     color: '#9a3412', fontWeight: 700, textDecoration: 'none', fontSize: 15,
                   }}>
                     <Phone size={16} />
-                    +91 98765 43210
+                    +91 81388 87081
                   </a>
                 </div>
               </motion.div>

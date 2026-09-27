@@ -148,11 +148,11 @@ export default function Footer() {
             <h4 style={{ color: 'white', fontWeight: 600, fontSize: 15, marginBottom: 20, letterSpacing: '0.5px' }}>Contact Info</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[
-                { Icon: MapPin, text: 'Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Maradu, Ernakulam, Kerala 682304' },
-                { Icon: Phone, text: '+91 98765 43210' },
-                { Icon: Mail, text: 'info@drsoumyasdentalclinic.com\ndrsoumyasdentalclinic@gmail.com' },
+                { Icon: MapPin, text: 'Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Maradu, Ernakulam, Kerala 682304', href: 'https://maps.google.com/?q=Johns+Arcade+Kundannoor+Ernakulam' },
+                { Icon: Phone, text: '+91 81388 87081', href: 'tel:+918138887081' },
+                { Icon: Mail, text: 'info@drsoumyasdentalclinic.com\ndrsoumyasdentalclinic@gmail.com', href: 'mailto:drsoumyasdentalclinic@gmail.com' },
                 { Icon: Clock, text: 'Mon - Sat: 9:30 AM – 7:30 PM\nSun: Appointments only' },
-              ].map(({ Icon, text }, i) => (
+              ].map(({ Icon, text, href }, i) => (
                 <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                   <div style={{
                     width: 32, height: 32,
@@ -164,7 +164,18 @@ export default function Footer() {
                   }}>
                     <Icon size={14} color="#14b8a6" />
                   </div>
-                  <span style={{ fontSize: 13, lineHeight: 1.6, color: '#94a3b8', whiteSpace: 'pre-line' }}>{text}</span>
+                  {href ? (
+                    <a href={href} style={{ fontSize: 13, lineHeight: 1.6, color: '#94a3b8', whiteSpace: 'pre-line', textDecoration: 'none', transition: 'color 0.2s' }}
+                       onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#14b8a6'}
+                       onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#94a3b8'}
+                       target={href.startsWith('http') ? '_blank' : undefined}
+                       rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    >
+                      {text}
+                    </a>
+                  ) : (
+                    <span style={{ fontSize: 13, lineHeight: 1.6, color: '#94a3b8', whiteSpace: 'pre-line' }}>{text}</span>
+                  )}
                 </div>
               ))}
             </div>

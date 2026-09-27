@@ -8,7 +8,7 @@ export default function MobileBottomBar() {
     { label: 'Home', path: '/', icon: Home, isExternal: false },
     { label: 'Services', path: '/services', icon: Stethoscope, isExternal: false },
     { label: 'Book', path: '/appointment', icon: Calendar, isExternal: false },
-    { label: 'Call', path: 'tel:+919876543210', icon: Phone, isExternal: true },
+    { label: 'Call', path: 'tel:+918138887081', icon: Phone, isExternal: true },
   ];
 
   return (

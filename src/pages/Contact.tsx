@@ -39,8 +39,8 @@ export default function Contact() {
               {
                 Icon: Phone,
                 title: 'Call Us',
-                lines: ['+91 98765 43210', '+91 98765 43211'],
-                href: 'tel:+919876543210',
+                lines: ['+91 81388 87081'],
+                href: 'tel:+918138887081',
                 gradient: 'linear-gradient(135deg, #eff8ff, #e0f2fe)',
                 iconColor: '#1e7ae8',
               },
@@ -128,7 +128,7 @@ export default function Contact() {
 
               {/* WhatsApp CTA */}
               <a
-                href={`https://wa.me/919876543210?text=${WA_MESSAGE}`}
+                href={`https://wa.me/918138887081?text=${WA_MESSAGE}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -162,7 +162,7 @@ export default function Contact() {
                 <div>
                   <div style={{ fontWeight: 700, color: '#9a3412', fontSize: 14, marginBottom: 4 }}>Dental Emergency?</div>
                   <div style={{ color: '#7c2d12', fontSize: 13, lineHeight: 1.6 }}>
-                    For urgent dental pain, broken teeth, or trauma, call us immediately at <strong>+91 98765 43210</strong>. We offer same-day emergency appointments.
+                    For urgent dental pain, broken teeth, or trauma, call us immediately at <strong>+91 81388 87081</strong>. We offer same-day emergency appointments.
                   </div>
                 </div>
               </div>

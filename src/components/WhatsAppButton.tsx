@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const WA_NUMBER = '919876543210';
+const WA_NUMBER = '918138887081';
 const WA_MESSAGE = encodeURIComponent(
   'Hello, I would like to know more about your dental services and book an appointment.'
 );

@@ -114,7 +114,7 @@ export default function Navbar() {
             {/* CTA */}
             <div className="mobile-hidden" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 12 }}>
               <a
-                href="tel:+919876543210"
+                href="tel:+918138887081"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -127,7 +127,7 @@ export default function Navbar() {
                 }}
               >
                 <Phone size={15} />
-                +91 98765 43210
+                +91 81388 87081
               </a>
               <Link
                 to="/appointment#appointment-form"
@@ -186,7 +186,7 @@ export default function Navbar() {
             ))}
             <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
               <a
-                href="tel:+919876543210"
+                href="tel:+918138887081"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -198,7 +198,7 @@ export default function Navbar() {
                 }}
               >
                 <Phone size={16} />
-                +91 98765 43210
+                +91 81388 87081
               </a>
               <Link
                 to="/appointment#appointment-form"

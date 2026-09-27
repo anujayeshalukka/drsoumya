@@ -184,7 +184,7 @@ export default function Home() {
                   Book Appointment
                 </Link>
                 <a
-                  href={`https://wa.me/919876543210?text=${encodeURIComponent('Hello, I would like to know more about your dental services and book an appointment.')}`}
+                  href={`https://wa.me/918138887081?text=${encodeURIComponent('Hello, I would like to know more about your dental services and book an appointment.')}`}
                   target="_blank" rel="noopener noreferrer"
                   className="btn-whatsapp"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}
@@ -859,7 +859,7 @@ export default function Home() {
               </p>
 
               {[
-                { Icon: Phone, label: 'Call Us', value: '+91 98765 43210', href: 'tel:+919876543210' },
+                { Icon: Phone, label: 'Call Us', value: '+91 81388 87081', href: 'tel:+918138887081' },
                 { Icon: MapPin, label: 'Visit Us', value: 'Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Maradu, Ernakulam, Kerala 682304', href: '#' },
                 { Icon: Clock, label: 'Hours', value: 'Mon - Sat: 9:30 AM – 7:30 PM | Sun: Appointments only', href: '#' },
               ].map(({ Icon, label, value, href }) => (
@@ -921,7 +921,7 @@ export default function Home() {
               Book Appointment Now
             </Link>
             <a
-              href={`https://wa.me/919876543210?text=${encodeURIComponent('Hello, I would like to know more about your dental services and book an appointment.')}`}
+              href={`https://wa.me/918138887081?text=${encodeURIComponent('Hello, I would like to know more about your dental services and book an appointment.')}`}
               target="_blank" rel="noopener noreferrer"
               className="btn-whatsapp"
               style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}

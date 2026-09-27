@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Shield, Award, Clock, Users, Star, ChevronDown, CircleCheck as CheckCircle, Phone, Calendar, ArrowRight, MapPin, Zap, Heart, Smile } from 'lucide-react';
 import EnquiryForm from '../components/EnquiryForm';
 import video1 from '../assets/video1.mp4';
-import drSoumyaImg from '../assets/dr-soumya.png';
+import drSoumyaImg from '../assets/dr-soumya.jpeg';
 
 
 const services = [

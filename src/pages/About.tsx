@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Award, Heart, Users, Zap, CircleCheck as CheckCircle, ArrowRight } from 'lucide-react';
-import drSoumyaImg from '../assets/dr-soumya.png';
+import drSoumyaImg from '../assets/dr-soumya.jpeg';
 import interiorImg from '../assets/interior.png';
 
 const team = [

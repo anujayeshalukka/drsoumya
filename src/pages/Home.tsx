@@ -408,7 +408,7 @@ export default function Home() {
                     </div>
                     <div>
                       <div style={{ fontWeight: 700, color: '#0d1b2e', fontSize: 15 }}>Dr. Soumya</div>
-                      <div style={{ color: '#0d9488', fontSize: 12 }}>BDS, MDS — Oral Diagnostician / OMR Specialist</div>
+                      <div style={{ color: '#0d9488', fontSize: 12 }}>BDS, MDS — Oral Medicine / Radiology Specialist</div>
                     </div>
                   </div>
                 </div>

@@ -18,7 +18,7 @@ const services = [
 
 const whyChoose = [
   { Icon: Shield, title: 'Sterilized & Safe', desc: 'International hygiene standards with hospital-grade sterilization.' },
-  { Icon: Award, title: 'Qualified & Passionate', desc: 'Dr. Soumya is a BDS, MDS-qualified Prosthodontist dedicated to delivering exceptional dental care.' },
+  { Icon: Award, title: 'Qualified & Passionate', desc: 'Dr. Soumya is a BDS, MDS-qualified Oral Medicine / Radiology Specialist.' },
   { Icon: Zap, title: 'Advanced Technology', desc: 'Digital X-rays, laser dentistry, and 3D imaging for precision care.' },
   { Icon: Heart, title: 'Pain-Free Dentistry', desc: 'Gentle techniques and sedation options for anxious patients.' },
   { Icon: Clock, title: 'Flexible Hours', desc: 'Extended hours and weekend appointments for your convenience.' },
@@ -435,17 +435,17 @@ export default function Home() {
                 Where Dental Excellence Meets Compassionate Care
               </h2>
               <p style={{ color: '#64748b', lineHeight: 1.8, marginBottom: 20, fontSize: 15 }}>
-                At Dr. Soumya's Dental Clinic, we combine cutting-edge dental technology with a compassionate, patient-first philosophy. Our state-of-the-art facility is equipped with the latest diagnostic and treatment tools to deliver precise, comfortable, and long-lasting results.
+                Dr Soumya’s Dental Clinic is a patient-focused dental care centre dedicated to providing comprehensive, compassionate and evidence-based oral healthcare in a comfortable and welcoming environment. With a special focus on Oral Medicine & Radiology, our clinic provides careful diagnosis and personalised treatment planning for a wide range of oral and dental conditions. From routine dental care and preventive services to oral disease evaluation, TMJ care and oral cancer screening, we strive to deliver quality care with a strong emphasis on early diagnosis, patient education and long-term oral health.
               </p>
-              <p style={{ color: '#64748b', lineHeight: 1.8, marginBottom: 32, fontSize: 15 }}>
-                Whether you need a routine cleaning or a complete smile transformation, our team of experienced dental professionals is here to guide you every step of the way.
-              </p>
+              
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 32 }}>
                 {[
-                  'State-of-the-art digital X-ray & imaging technology',
-                  'Painless injection techniques & sedation dentistry',
-                  'All dental treatments under one roof',
-                  'Transparent pricing with no hidden charges',
+                  'Your Oral Health, Our Priority.',
+                  'Comprehensive Health and Hygiene',
+                  'Latest Dental Technologies',
+                  'Expert Dental Care',
+
+                  
                 ].map(point => (
                   <div key={point} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <CheckCircle size={16} color="#0d9488" style={{ flexShrink: 0 }} />

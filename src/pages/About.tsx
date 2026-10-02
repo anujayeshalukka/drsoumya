@@ -1,41 +1,51 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Award, Heart, Users, Zap, CircleCheck as CheckCircle, ArrowRight } from 'lucide-react';
+import { Award, Heart, ArrowRight, SearchCheck, BookOpen } from 'lucide-react';
 import drSoumyaImg from '../assets/dr-soumya.jpeg';
-import interiorImg from '../assets/interior.png';
+import drNimmiImg from '../assets/dr-nimmi.webp';
+import drSreedeviImg from '../assets/dr-sreedevi.png';
+import drRehanaImg from '../assets/dr-rehana.webp';
+import drVineethImg from '../assets/dr-vineeth.webp';
+import drTonyImg from '../assets/dr-tony.png';
+import clinicReceptionImg from '../assets/clinic-reception.webp';
+import { useSeo } from '../lib/seo';
 
-const team = [
+const team: { name: string; role: string; qual: string; img?: string; bio?: string; specialties?: string[] }[] = [
   {
-    name: 'Dr. Soumya Raghavan',
-    role: 'Chief Dental Officer & Prosthodontist',
-    qual: 'BDS, MDS (Prosthodontics) — 15+ Years',
-    bio: 'Dr. Soumya is a highly accomplished prosthodontist with over 15 years of clinical excellence. She trained at leading dental institutions and specializes in smile makeovers, implants, and full-mouth rehabilitation. Her gentle approach and commitment to pain-free dentistry has earned her hundreds of loyal patients.',
+    name: 'Dr. Soumya',
+    role: 'Oral Medicine / Radiology Specialist',
+    qual: 'BDS, MDS',
     img: drSoumyaImg,
-    specialties: ['Dental Implants', 'Smile Makeover', 'Full Mouth Rehabilitation', 'Veneers & Crowns'],
   },
   {
-    name: 'Dr. Anju Krishnamurthy',
+    name: 'Dr. Nimmi M',
+    role: 'Oral and Maxillofacial Surgery',
+    qual: 'BDS, MDS',
+    img: drNimmiImg,
+  },
+  {
+    name: 'Dr. Sreedevi R G',
     role: 'Orthodontist',
-    qual: 'BDS, MDS (Orthodontics) — 10+ Years',
-    bio: 'Dr. Anju is our resident orthodontics specialist with a passion for creating perfectly aligned smiles. He is certified in both traditional braces and invisible aligners (Invisalign), treating patients from teens to adults.',
-    img: 'https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=500',
-    specialties: ['Traditional Braces', 'Invisible Aligners', 'Retainers', 'Pediatric Orthodontics'],
+    qual: 'BDS, MDS · KDC Number 21747',
+    img: drSreedeviImg,
   },
   {
-    name: 'Dr. Antony Joy',
-    role: 'Endodontist',
-    qual: 'BDS, MDS (Endodontics) — 8+ Years',
-    bio: 'Dr. Preethi specializes in root canal treatments and endodontic surgery. Her precision technique and use of rotary endodontic instruments makes even complex root canals quick and painless.',
-    img: 'https://images.pexels.com/photos/5327921/pexels-photo-5327921.jpeg?auto=compress&cs=tinysrgb&w=500',
-    specialties: ['Root Canal Treatment', 'Endodontic Surgery', 'Dental Trauma', 'Pain Management'],
+    name: 'Dr. Rehana Bind A',
+    role: 'Periodontist',
+    qual: 'BDS, MDS',
+    img: drRehanaImg,
   },
   {
-    name: 'Dr. Rimi Antony',
-    role: 'Pediatric Dentist',
-    qual: 'BDS, MDS (Pedodontics) — 9+ Years',
-    bio: 'Dr. Suresh is beloved by his young patients for his patient, playful approach to dentistry. He specializes in making children feel safe and comfortable, building positive dental habits from an early age.',
-    img: 'https://images.pexels.com/photos/6749773/pexels-photo-6749773.jpeg?auto=compress&cs=tinysrgb&w=500',
-    specialties: ['Pediatric Check-ups', 'Sealants & Fluoride', 'Space Maintainers', 'Habit Breaking'],
+    name: 'Dr. Vineeth John',
+    role: 'Oral and Maxillofacial Surgeon',
+    qual: 'BDS, MDS',
+    img: drVineethImg,
+  },
+  {
+    name: 'Dr. Tony Joy',
+    role: 'Prosthodontist',
+    qual: 'BDS, MDS',
+    img: drTonyImg,
   },
 ];
 
@@ -44,17 +54,22 @@ const team = [
 const values = [
   { Icon: Heart, title: 'Patient-First Always', desc: 'Every decision we make puts your comfort, safety, and well-being first.' },
   { Icon: Award, title: 'Clinical Excellence', desc: 'We pursue the highest standards of dental care through continuous education.' },
-  { Icon: Zap, title: 'Innovation-Driven', desc: 'We invest in the latest technology to deliver better outcomes for you.' },
-  { Icon: Users, title: 'Community Focused', desc: 'We actively support dental health education and community wellness programs.' },
+  { Icon: SearchCheck, title: 'Early Diagnosis', desc: 'Careful examination and assessment help us identify concerns early and plan the right treatment.' },
+  { Icon: BookOpen, title: 'Patient Education', desc: 'We help you understand your oral health so you can make informed decisions about your care.' },
 ];
 
 export default function About() {
+  useSeo({
+    title: "About Dr. Soumya's Dental Clinic | Maradu, Ernakulam",
+    description: "Learn about Dr. Soumya's Dental Clinic in Maradu, Ernakulam, Kerala and our approach to comprehensive dental and oral healthcare.",
+    path: '/about',
+  });
   return (
     <div>
       {/* Hero */}
       <section style={{
         background: 'linear-gradient(135deg, #0d1b2e 0%, #1e3a5f 60%, #0d4a4a 100%)',
-        padding: '160px 24px 80px',
+        padding: 'var(--hero-top, 160px) 24px var(--hero-bottom, 80px)',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
@@ -69,16 +84,16 @@ export default function About() {
               Dedicated to Your Best Smile
             </h1>
             <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 17, lineHeight: 1.7 }}>
-              Since 2008, Dr. Soumya's Dental Clinic has been transforming smiles and changing lives with compassionate, world-class dental care.
+              Dr. Soumya's Dental Clinic is dedicated to transforming smiles and changing lives with compassionate dental care.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Mission & Vision */}
-      <section style={{ padding: '96px 24px', background: '#f8fafc' }}>
+      <section style={{ padding: 'var(--section-y, 96px) 24px', background: '#f8fafc' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 32, marginBottom: 80 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 32, marginBottom: 'var(--block-gap, 80px)' }}>
             {[
               {
                 label: 'Our Mission',
@@ -90,7 +105,7 @@ export default function About() {
               {
                 label: 'Our Vision',
                 title: 'A Healthier, Happier Community',
-                text: "We envision a community where everyone has access to high-quality dental care and understands the importance of oral health. We strive to be the region's most trusted dental practice, recognized for our exceptional outcomes, patient satisfaction, and commitment to continuous innovation.",
+                text: "We envision a community where everyone has access to high-quality dental care and understands the importance of oral health. We strive to be the region's most trusted dental practice.",
                 gradient: 'linear-gradient(135deg, #f0fdfa, #ccfbf1)',
                 borderColor: '#6ee7b7',
               },
@@ -119,11 +134,11 @@ export default function About() {
           </div>
 
           {/* Clinic intro */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 60, alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--stack-gap, 60px)', alignItems: 'center' }}>
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <img
-                src={interiorImg}
-                alt="Modern dental clinic interior"
+                src={clinicReceptionImg}
+                alt="Reception at Dr. Soumya's Dental Clinic, Maradu"
                 style={{ width: '100%', borderRadius: 24, boxShadow: '0 20px 60px rgba(0,0,0,0.1)' }}
               />
             </motion.div>
@@ -132,23 +147,14 @@ export default function About() {
                 A Clinic Built on Trust & Technology
               </h2>
               <p style={{ color: '#64748b', lineHeight: 1.8, marginBottom: 20, fontSize: 15 }}>
-                Our state-of-the-art facility is designed to create a calming, stress-free environment from the moment you walk in. We've invested heavily in the latest dental equipment — from 3D intraoral scanners to laser treatment systems — so you receive the most precise, efficient care possible.
+                Our clinic is designed to create a calming, stress-free environment from the moment you walk in.
               </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 28 }}>
-                {[
-                  '3D digital intraoral scanning',
-                  'Hospital-grade sterilization protocols',
-                  'Dedicated children\'s treatment room',
-                  'Comfortable patient lounges',
-                  'On-site dental laboratory',
-                  'Cashless payment & insurance accepted',
-                ].map(p => (
-                  <div key={p} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <CheckCircle size={15} color="#0d9488" style={{ flexShrink: 0 }} />
-                    <span style={{ color: '#475569', fontSize: 14 }}>{p}</span>
-                  </div>
-                ))}
-              </div>
+              <p style={{ color: '#64748b', lineHeight: 1.8, marginBottom: 20, fontSize: 15 }}>
+                At Dr Soumya’s Dental Clinic, we aim to give every patient care that is thorough, compassionate and grounded in evidence. With a special focus on Oral Medicine & Radiology, each visit begins with a careful assessment, so that your treatment is planned around your individual needs.
+              </p>
+              <p style={{ color: '#64748b', lineHeight: 1.8, marginBottom: 20, fontSize: 15 }}>
+                Whether you need routine dental care, preventive advice, evaluation of an oral condition, TMJ care or oral cancer screening, we place early diagnosis and clear patient education at the centre of your care — helping you look after your oral health for the long term.
+              </p>
               <Link to="/appointment#appointment-form" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                 Book a Visit <ArrowRight size={15} />
               </Link>
@@ -158,9 +164,9 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section style={{ padding: '80px 24px', background: 'white' }}>
+      <section style={{ padding: 'var(--section-y, 80px) 24px', background: 'white' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 52 }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 'var(--head-gap, 52px)' }}>
             <h2 className="section-title" style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(26px, 3vw, 36px)', fontWeight: 700, color: '#0d1b2e' }}>
               Our Core Values
             </h2>
@@ -194,9 +200,9 @@ export default function About() {
       </section>
 
       {/* Team */}
-      <section style={{ padding: '80px 24px', background: '#f8fafc' }}>
+      <section style={{ padding: 'var(--section-y, 80px) 24px', background: '#f8fafc' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 56 }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 'var(--head-gap, 56px)' }}>
             <div>
               <div style={{ display: 'inline-block', background: 'linear-gradient(135deg, #e0f2fe, #ccfbf1)', borderRadius: 50, padding: '6px 16px', fontSize: 13, color: '#0d9488', fontWeight: 600, marginBottom: 16 }}>
                 Meet the Experts
@@ -206,11 +212,11 @@ export default function About() {
               Our Dental Specialists
             </h2>
             <p style={{ color: '#64748b', maxWidth: 520, margin: '24px auto 0', fontSize: 15, lineHeight: 1.7 }}>
-              Our team of experienced specialists is dedicated to providing you with the best possible dental care.
+              Our team is dedicated to providing you with the best possible dental care.
             </p>
           </motion.div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 28 }}>
+          <div className="team-grid">
             {team.map((member, i) => (
               <motion.div
                 key={member.name}
@@ -222,23 +228,17 @@ export default function About() {
                 style={{ background: 'white', borderRadius: 24, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)', border: '1px solid #f1f5f9' }}
               >
                 <div style={{ position: 'relative', aspectRatio: '4/3', background: '#e5e7eb', overflow: 'hidden' }}>
-                  <img src={member.img} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  <div style={{
-                    position: 'absolute', bottom: 0, left: 0, right: 0,
-                    background: 'linear-gradient(to top, rgba(13,27,46,0.8) 0%, transparent 100%)',
-                    padding: '40px 20px 16px',
-                  }}>
-                    <div style={{ color: 'white', fontWeight: 700, fontSize: 16 }}>{member.name}</div>
-                    <div style={{ color: '#14b8a6', fontSize: 12, fontWeight: 500 }}>{member.role}</div>
-                  </div>
+                  {member.img && <img src={member.img} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} />}
                 </div>
-                <div style={{ padding: '20px 22px 24px' }}>
+                <div className="team-card-body">
+                  <div className="team-card-name" style={{ color: '#0d1b2e', fontWeight: 700 }}>{member.name}</div>
+                  <div style={{ color: '#0d9488', fontSize: 12, fontWeight: 500, marginBottom: 12 }}>{member.role}</div>
                   <div style={{ fontSize: 12, color: '#64748b', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 6 }}>
                     <Award size={12} color="#0d9488" />
                     {member.qual}
                   </div>
-                  <p style={{ color: '#64748b', fontSize: 13, lineHeight: 1.7, marginBottom: 14 }}>{member.bio}</p>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                  {member.bio && <p style={{ color: '#64748b', fontSize: 13, lineHeight: 1.7, marginBottom: 14 }}>{member.bio}</p>}
+                  {member.specialties && <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                     {member.specialties.map(s => (
                       <span key={s} style={{
                         background: 'linear-gradient(135deg, #eff8ff, #f0fdfa)',
@@ -250,15 +250,25 @@ export default function About() {
                         border: '1px solid rgba(13,148,136,0.2)',
                       }}>{s}</span>
                     ))}
-                  </div>
+                  </div>}
                 </div>
               </motion.div>
             ))}
           </div>
+          <style>{`
+            .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px; }
+            .team-card-body { padding: 20px 22px 24px; }
+            .team-card-name { font-size: 16px; }
+            @media (max-width: 640px) {
+              .team-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+              .team-card-body { padding: 14px 12px 16px; }
+              .team-card-name { font-size: 14px; }
+            }
+          `}</style>
         </div>
       </section>
 
-     
+
     </div>
   );
 }

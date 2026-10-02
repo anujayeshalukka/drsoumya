@@ -3,17 +3,33 @@ import { motion } from 'framer-motion';
 import { Calendar, Clock, User, Phone, Mail, MessageSquare, CircleCheck as CheckCircle } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { countryCodes } from '../utils/countryCodes';
+import { useSeo } from '../lib/seo';
 
 const services = [
-  'General Dentistry / Check-up',
-  'Teeth Cleaning',
-  'Dental Implants',
+  'Comprehensive Diagnosis & Treatment',
+  'Oral Lesion & Ulcer Management',
+  'Oral Examination & Diagnosis',
+  'Oral Cancer Screening',
+  'TMJ Pain Management',
+  'Orofacial Pain Management',
+  'Oral Potentially Malignant Disorders Screening',
+  'Salivary Gland Disorders',
+  'Bruxism & Teeth Grinding Management',
+  'Digital X-Ray',
+  'Dental Restoration',
   'Root Canal Treatment',
-  'Orthodontics & Braces',
-  'Cosmetic Dentistry',
-  'Teeth Whitening',
-  'Pediatric Dentistry',
-  'Emergency Dental Care',
+  'Dental Veneers & Smile Designing',
+  'Ultrasonic Scaling & Polishing',
+  'Periodontal Disease Treatment',
+  'Orthodontic Treatment',
+  'Dental Implants',
+  'Paediatric Dentistry',
+  'Dental Extraction and Impaction (Surgical Removal)',
+  'Dental Bleaching',
+  'Removable & Fixed Dentures',
+  'Clear Aligners',
+  'Preventive Dentistry',
+  'Mouthguards & Occlusal Splints',
   'Other / Consultation',
 ];
 
@@ -53,6 +69,11 @@ const inputStyle: React.CSSProperties = {
 };
 
 export default function Appointment() {
+  useSeo({
+    title: "Book an Appointment | Dr. Soumya's Dental Clinic, Maradu",
+    description: "Book a dental appointment at Dr. Soumya's Dental Clinic in Maradu, Ernakulam, Kerala. Open Monday to Saturday, 9:30 AM to 7:30 PM; Sundays by appointment only.",
+    path: '/appointment',
+  });
   const [form, setForm] = useState<FormData>(INITIAL);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -117,7 +138,7 @@ export default function Appointment() {
       {/* Hero */}
       <section style={{
         background: 'linear-gradient(135deg, #0d1b2e 0%, #1e3a5f 60%, #0d4a4a 100%)',
-        padding: '160px 24px 80px',
+        padding: 'var(--hero-top, 160px) 24px var(--hero-bottom, 80px)',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
@@ -139,9 +160,9 @@ export default function Appointment() {
       </section>
 
       {/* Form */}
-      <section style={{ padding: '80px 24px', background: '#f8fafc' }}>
+      <section style={{ padding: 'var(--section-y, 80px) 24px', background: '#f8fafc' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 48, alignItems: 'start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--stack-gap, 48px)', alignItems: 'start' }}>
             {/* Info sidebar */}
             <div>
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>
@@ -150,7 +171,7 @@ export default function Appointment() {
                 </h2>
                 {[
                   { step: '1', title: 'Fill the Form', desc: 'Provide your details and preferred appointment time.' },
-                  { step: '2', title: 'Confirmation Call', desc: 'We\'ll call/WhatsApp you within 2 hours to confirm.' },
+                  { step: '2', title: 'Confirmation Call', desc: 'We\'ll call/WhatsApp you to confirm.' },
                   { step: '3', title: 'Visit the Clinic', desc: 'Arrive 10 minutes early for your paperwork.' },
                   { step: '4', title: 'Your Healthy Smile', desc: 'Receive expert care from our specialist team.' },
                 ].map(({ step, title, desc }) => (
@@ -193,7 +214,7 @@ export default function Appointment() {
                     <span style={{ fontSize: 18 }}>🚨</span>
                     <span style={{ fontWeight: 700, color: '#9a3412', fontSize: 14 }}>Dental Emergency?</span>
                   </div>
-                  <p style={{ color: '#7c2d12', fontSize: 13, marginBottom: 10 }}>Call us immediately for same-day emergency care.</p>
+                  <p style={{ color: '#7c2d12', fontSize: 13, marginBottom: 10 }}>Call us immediately.</p>
                   <a href="tel:+918138887081" style={{
                     display: 'flex', alignItems: 'center', gap: 8,
                     color: '#9a3412', fontWeight: 700, textDecoration: 'none', fontSize: 15,
@@ -227,7 +248,7 @@ export default function Appointment() {
                   Thank you, your appointment request has been received.
                 </p>
                 <p style={{ color: '#64748b', lineHeight: 1.7, marginBottom: 32, fontSize: 14 }}>
-                  Our team will contact you within <strong>2 hours</strong> to confirm your slot. You'll also receive a WhatsApp confirmation.
+                  Our team will contact you to confirm your slot. You'll also receive a WhatsApp confirmation.
                 </p>
                 <button
                   onClick={() => setSuccess(false)}

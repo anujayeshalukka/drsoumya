@@ -1,68 +1,30 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Shield, Award, Clock, Users, Star, ChevronDown, CircleCheck as CheckCircle, Phone, Calendar, ArrowRight, MapPin, Zap, Heart, Smile } from 'lucide-react';
+import { Award, Clock, ChevronDown, CircleCheck as CheckCircle, Phone, Calendar, ArrowLeft, ArrowRight, MapPin, Zap, Heart, Smile, Stethoscope, ShieldCheck } from 'lucide-react';
 import EnquiryForm from '../components/EnquiryForm';
 import video1 from '../assets/video1.mp4';
 import drSoumyaImg from '../assets/dr-soumya.jpeg';
+import { useSeo } from '../lib/seo';
+import { services } from '../data/services';
 
+const MotionLink = motion.create(Link);
 
-const services = [
-  { icon: '🦷', title: 'General Dentistry', desc: 'Comprehensive check-ups, fillings, and preventive care for the whole family.' },
-  { icon: '✨', title: 'Teeth Whitening', desc: 'Professional in-office whitening for a brighter, more confident smile.' },
-  { icon: '🔩', title: 'Dental Implants', desc: 'Permanent tooth replacement that looks, feels, and functions naturally.' },
-  { icon: '🔄', title: 'Root Canal Treatment', desc: 'Pain-free root canal therapy to save and restore infected teeth.' },
-  { icon: '😁', title: 'Orthodontics & Braces', desc: 'Metal, ceramic, and invisible aligners to straighten your smile.' },
-  { icon: '💎', title: 'Cosmetic Dentistry', desc: 'Veneers, bonding, and smile makeovers to transform your appearance.' },
-];
 
 const whyChoose = [
-  { Icon: Shield, title: 'Sterilized & Safe', desc: 'International hygiene standards with hospital-grade sterilization.' },
   { Icon: Award, title: 'Qualified & Passionate', desc: 'Dr. Soumya is a BDS, MDS-qualified Oral Medicine / Radiology Specialist.' },
-  { Icon: Zap, title: 'Advanced Technology', desc: 'Digital X-rays, laser dentistry, and 3D imaging for precision care.' },
-  { Icon: Heart, title: 'Pain-Free Dentistry', desc: 'Gentle techniques and sedation options for anxious patients.' },
-  { Icon: Clock, title: 'Flexible Hours', desc: 'Extended hours and weekend appointments for your convenience.' },
+  { Icon: Zap, title: 'Advanced Technology', desc: 'Digital X-rays for detailed assessment and precise diagnosis.' },
+  { Icon: Heart, title: 'Pain-Free Dentistry', desc: 'Gentle dental techniques to help anxious patients feel comfortable.' },
   { Icon: Smile, title: 'Family-Friendly', desc: 'A warm, welcoming environment for patients of all ages.' },
-];
-
-const testimonials = [
-  {
-    name: 'Priya Sharma',
-    rating: 5,
-    text: 'Dr. Soumya and her team are absolutely wonderful! My smile transformation with veneers exceeded every expectation. The clinic is spotless and the staff is incredibly caring.',
-    service: 'Cosmetic Dentistry',
-    avatar: 'PS',
-  },
-  {
-    name: 'Rajesh Kumar',
-    rating: 5,
-    text: 'I was terrified of root canals but the entire procedure was completely painless. Dr. Soumya explained every step and made me feel at ease. Highly recommend!',
-    service: 'Root Canal Treatment',
-    avatar: 'RK',
-  },
-  {
-    name: 'Anitha Menon',
-    rating: 5,
-    text: 'Got dental implants here and the results are phenomenal. Looks and feels exactly like natural teeth. Best investment I have made for my health and confidence.',
-    service: 'Dental Implants',
-    avatar: 'AM',
-  },
-  {
-    name: 'Vikram Reddy',
-    rating: 5,
-    text: 'Took my kids here and they actually enjoy going to the dentist now! The clinic has a great environment for children. Very professional and gentle approach.',
-    service: 'Pediatric Dentistry',
-    avatar: 'VR',
-  },
+  { Icon: Stethoscope, title: 'Comprehensive Care', desc: 'Comprehensive diagnosis and personalised treatment for dental and oral health.' },
+  { Icon: ShieldCheck, title: 'Preventive Dentistry', desc: 'Preventive care including oral hygiene guidance, fluoride and pit and fissure sealants.' },
 ];
 
 const faqs = [
   { q: 'How often should I visit the dentist?', a: 'We recommend visiting every 6 months for a routine check-up and cleaning. Regular visits help detect issues early and keep your smile healthy.' },
   { q: 'Are dental implants painful?', a: 'Dental implant procedures are performed under local anesthesia, so you feel minimal discomfort. Post-procedure soreness is manageable with prescribed medication.' },
   { q: 'How long does teeth whitening last?', a: 'Professional teeth whitening results typically last 1–3 years depending on your diet and oral habits. Avoid staining foods and beverages for longer-lasting results.' },
-  { q: 'Do you treat dental emergencies?', a: 'Yes! We offer same-day emergency appointments. Call us immediately for toothaches, broken teeth, or dental trauma and we will accommodate you as quickly as possible.' },
-  { q: 'What payment options do you offer?', a: 'We accept cash, all major credit/debit cards, UPI, and EMI options. We also work with most dental insurance providers. Please contact us for specific details.' },
-  { q: 'How do I prepare my child for their first dental visit?', a: 'Talk positively about the dentist, read books about dental visits, and avoid using dental trips as a threat. Our team specializes in making children comfortable and relaxed.' },
+  { q: 'How do I prepare my child for their first dental visit?', a: 'Talk positively about the dentist, read books about dental visits, and avoid using dental trips as a threat.' },
 ];
 
 function CountUp({ end, suffix = '', duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
@@ -92,7 +54,28 @@ function CountUp({ end, suffix = '', duration = 2000 }: { end: number; suffix?: 
 }
 
 export default function Home() {
+  useSeo({
+    title: "Dr. Soumya's Dental Clinic | Dentist in Maradu, Ernakulam, Kerala",
+    description: "Dr. Soumya's Dental Clinic in Maradu, Ernakulam, Kerala, provides comprehensive dental care including root canal treatment, dental implants, orthodontics, periodontal care, paediatric dentistry, oral diagnosis and preventive dentistry.",
+    path: '/',
+  });
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  // Services carousel: 4 cards per view on desktop, 2 on tablet, 1 on mobile.
+  const getServicesPerView = () => (window.innerWidth <= 1024 ? 2 : 4);
+  const [servicesPerView, setServicesPerView] = useState(getServicesPerView);
+  const [servicesStart, setServicesStart] = useState(0);
+  const servicesTouchX = useRef<number | null>(null);
+  const servicesSwiped = useRef(false);
+  const servicesMaxIndex = services.length - servicesPerView;
+  const servicesIndex = Math.min(servicesStart, servicesMaxIndex);
+  const slideServices = (dir: number) =>
+    setServicesStart(Math.min(Math.max(servicesIndex + dir * servicesPerView, 0), servicesMaxIndex));
+  useEffect(() => {
+    const onResize = () => setServicesPerView(getServicesPerView());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   return (
     <div>
@@ -129,11 +112,11 @@ export default function Home() {
           bottom: '-150px', left: '-100px', borderRadius: '50%',
         }} />
 
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '100px 24px 60px', width: '100%' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '100px 24px var(--hero-inner-bottom, 60px)', width: '100%' }}>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 60,
+            gap: 'var(--stack-gap, 60px)',
             alignItems: 'center',
           }}>
             {/* Left content */}
@@ -175,10 +158,10 @@ export default function Home() {
                 marginBottom: 36,
                 maxWidth: 480,
               }}>
-                Experience world-class dental care at Dr. Soumya's Clinic. From routine check-ups to complete smile makeovers — we deliver exceptional results with a gentle, patient-first approach.
+                Experience dental care at Dr. Soumya's Clinic. From routine check-ups to complete smile makeovers — with a gentle, patient-first approach.
               </p>
 
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginBottom: 48 }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginBottom: 'var(--block-gap, 48px)' }}>
                 <Link to="/appointment#appointment-form" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                   <Calendar size={16} />
                   Book Appointment
@@ -196,19 +179,6 @@ export default function Home() {
                 </a>
               </div>
 
-              {/* Trust badges */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20 }}>
-                {[
-                  { Icon: Shield, label: 'ISO Certified' },
-                  { Icon: Award, label: 'Award Winning' },
-                  { Icon: Users, label: '10,000+ Patients' },
-                ].map(({ Icon, label }) => (
-                  <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
-                    <Icon size={15} color="#14b8a6" />
-                    <span style={{ color: 'rgba(255,255,255,0.65)', fontSize: 13 }}>{label}</span>
-                  </div>
-                ))}
-              </div>
             </motion.div>
 
             {/* Right — 3D floating card */}
@@ -246,85 +216,6 @@ export default function Home() {
                   }} />
                 </div>
 
-                {/* Floating stat cards */}
-                <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                  style={{
-                    position: 'absolute',
-                    top: -20,
-                    right: -20,
-                    background: 'white',
-                    borderRadius: 18,
-                    padding: '16px 20px',
-                    boxShadow: '0 20px 50px rgba(0,0,0,0.18)',
-                    minWidth: 140,
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <div style={{
-                      width: 40, height: 40,
-                      background: 'linear-gradient(135deg, #e0f2fe, #ccfbf1)',
-                      borderRadius: 12,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}>
-                      <Star size={18} color="#0d9488" fill="#0d9488" />
-                    </div>
-                    <div>
-                      <div style={{ fontWeight: 700, fontSize: 18, color: '#0d1b2e' }}>4.9/5</div>
-                      <div style={{ fontSize: 11, color: '#64748b' }}>Patient Rating</div>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                  style={{
-                    position: 'absolute',
-                    bottom: -16,
-                    left: -16,
-                    background: 'white',
-                    borderRadius: 18,
-                    padding: '14px 18px',
-                    boxShadow: '0 20px 50px rgba(0,0,0,0.18)',
-                    minWidth: 160,
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <div style={{
-                      width: 38, height: 38,
-                      background: 'linear-gradient(135deg, #f0fdf4, #dcfce7)',
-                      borderRadius: 10,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}>
-                      <CheckCircle size={18} color="#16a34a" />
-                    </div>
-                    <div>
-                      <div style={{ fontWeight: 700, fontSize: 16, color: '#0d1b2e' }}>10,000+</div>
-                      <div style={{ fontSize: 11, color: '#64748b' }}>Happy Patients</div>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                  style={{
-                    position: 'absolute',
-                    bottom: 60,
-                    right: -24,
-                    background: 'white',
-                    borderRadius: 14,
-                    padding: '12px 16px',
-                    boxShadow: '0 15px 40px rgba(0,0,0,0.15)',
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <Phone size={14} color="#0d9488" />
-                    <span style={{ fontSize: 12, fontWeight: 600, color: '#0d1b2e' }}>24/7 Emergency</span>
-                  </div>
-                </motion.div>
               </div>
             </motion.div>
           </div>
@@ -344,7 +235,7 @@ export default function Home() {
       </section>
 
       {/* ── STATS ─────────────────────────────────────────── */}
-      <section style={{ background: 'linear-gradient(135deg, #1e7ae8, #0d9488)', padding: '64px 24px' }}>
+      <section style={{ background: 'linear-gradient(135deg, #1e7ae8, #0d9488)', padding: 'var(--section-y-sm, 64px) 24px' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <div style={{
             display: 'grid',
@@ -353,9 +244,8 @@ export default function Home() {
           }}>
             {[
               { end: 100, suffix: '%', label: 'Commitment to Care' },
-              { end: 10, suffix: '+', label: 'Advanced Technologies' },
               { end: 5, suffix: '+', label: 'Dental Specialists' },
-              { end: 15, suffix: '+', label: 'Dental Services' },
+              { end: 24, label: 'Dental Services' },
             ].map(stat => (
               <div key={stat.label} className="stat-box">
                 <div style={{ fontSize: 42, fontWeight: 700, color: 'white', lineHeight: 1.1, marginBottom: 8 }}>
@@ -369,12 +259,12 @@ export default function Home() {
       </section>
 
       {/* ── INTRO ─────────────────────────────────────────── */}
-      <section style={{ padding: '96px 24px', background: '#f8fafc' }}>
+      <section style={{ padding: 'var(--section-y, 96px) 24px', background: '#f8fafc' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 64,
+            gap: 'var(--stack-gap, 64px)',
             alignItems: 'center',
           }}>
             <motion.div
@@ -470,13 +360,13 @@ export default function Home() {
       </section>
 
       {/* ── SERVICES ──────────────────────────────────────── */}
-      <section style={{ padding: '96px 24px', background: 'white' }}>
+      <section style={{ padding: 'var(--section-y, 96px) 24px', background: 'white' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            style={{ textAlign: 'center', marginBottom: 64 }}
+            style={{ textAlign: 'center', marginBottom: 'var(--head-gap, 64px)' }}
           >
             <div>
               <div style={{ display: 'inline-block', background: 'linear-gradient(135deg, #e0f2fe, #ccfbf1)', borderRadius: 50, padding: '6px 16px', fontSize: 13, color: '#0d9488', fontWeight: 600, marginBottom: 16 }}>
@@ -497,45 +387,87 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: 24,
-            marginBottom: 48,
-          }}>
+          <div
+            className="services-carousel"
+            onScroll={e => { e.currentTarget.scrollLeft = 0; }}
+            onTouchStart={e => { servicesTouchX.current = e.touches[0].clientX; servicesSwiped.current = false; }}
+            onTouchEnd={e => {
+              if (servicesTouchX.current === null) return;
+              const dx = e.changedTouches[0].clientX - servicesTouchX.current;
+              if (Math.abs(dx) > 50) {
+                servicesSwiped.current = true;
+                slideServices(dx < 0 ? 1 : -1);
+              }
+              servicesTouchX.current = null;
+            }}
+            onClickCapture={e => {
+              // A swipe should slide the carousel, not open the card it ended on.
+              if (servicesSwiped.current) {
+                e.preventDefault();
+                e.stopPropagation();
+                servicesSwiped.current = false;
+              }
+            }}
+          >
+          <div
+            className="services-carousel-track"
+            style={{ transform: `translateX(calc(-${servicesIndex} * (100% + var(--carousel-gap)) / ${servicesPerView}))` }}
+          >
             {services.map((svc, i) => (
-              <motion.div
+              <MotionLink
                 key={svc.title}
+                to="/services"
+                tabIndex={i >= servicesIndex && i < servicesIndex + servicesPerView ? 0 : -1}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="service-card"
-                style={{ padding: '32px 28px', boxShadow: '0 4px 20px rgba(0,0,0,0.06)', border: '1px solid #f1f5f9' }}
+                transition={{ delay: (i % 4) * 0.1 }}
+                className="service-card svc-card home-service-card"
               >
-                <div style={{
-                  fontSize: 38,
-                  marginBottom: 20,
-                  display: 'inline-flex',
-                  width: 68, height: 68,
-                  background: 'linear-gradient(135deg, #eff8ff, #f0fdfa)',
-                  borderRadius: 18,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                  {svc.icon}
-                </div>
-                <h3 style={{ fontWeight: 700, fontSize: 17, color: '#0d1b2e', marginBottom: 10 }}>{svc.title}</h3>
-                <p style={{ color: '#64748b', fontSize: 14, lineHeight: 1.7, marginBottom: 16 }}>{svc.desc}</p>
-                <Link to="/services" style={{
+                <div className="svc-card-icon">{svc.icon}</div>
+                <h3 className="svc-card-title">{svc.title}</h3>
+                <p className="svc-card-desc home-service-desc" style={{ marginBottom: 16 }}>{svc.desc}</p>
+                <span className="home-service-more" style={{
                   display: 'inline-flex', alignItems: 'center', gap: 5,
-                  color: '#0d9488', fontWeight: 600, fontSize: 13, textDecoration: 'none',
+                  color: '#0d9488', fontWeight: 600, fontSize: 13,
                 }}>
                   Learn more <ArrowRight size={13} />
-                </Link>
-              </motion.div>
+                </span>
+              </MotionLink>
             ))}
           </div>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 12, marginBottom: 40 }}>
+            <button type="button" className="carousel-btn" aria-label="Previous services" onClick={() => slideServices(-1)} disabled={servicesIndex === 0}>
+              <ArrowLeft size={18} />
+            </button>
+            <button type="button" className="carousel-btn" aria-label="Next services" onClick={() => slideServices(1)} disabled={servicesIndex >= servicesMaxIndex}>
+              <ArrowRight size={18} />
+            </button>
+          </div>
+          <style>{`
+            .services-carousel { overflow: hidden; padding: 12px 0 32px; margin-top: -12px; touch-action: pan-y; }
+            .services-carousel-track { --carousel-gap: 24px; display: flex; gap: var(--carousel-gap); transition: transform 0.5s ease; }
+            .services-carousel-track > * { flex: 0 0 calc((100% - 3 * var(--carousel-gap)) / 4); }
+            @media (max-width: 1024px) { .services-carousel-track > * { flex-basis: calc((100% - var(--carousel-gap)) / 2); } }
+            @media (max-width: 640px) {
+              .services-carousel-track { --carousel-gap: 12px; }
+              .home-service-card .home-service-desc { -webkit-line-clamp: 2; line-clamp: 2; }
+            }
+            .home-service-card { display: block; text-decoration: none; color: inherit; }
+            .home-service-card:hover, .home-service-card:focus-visible { translate: 0 -6px; background: #fbfefe; box-shadow: 0 16px 40px rgba(13,148,136,0.14); }
+            .home-service-card:focus-visible { outline: 2px solid #0d9488; outline-offset: -2px; }
+            .home-service-card:focus-visible::before { opacity: 1; }
+            .home-service-desc { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
+            .home-service-more { transition: color 0.25s ease; }
+            .home-service-more svg { transition: transform 0.25s ease; }
+            .home-service-card:hover .home-service-more, .home-service-card:focus-visible .home-service-more { color: #0f766e !important; }
+            .home-service-card:hover .home-service-more svg, .home-service-card:focus-visible .home-service-more svg { transform: translateX(4px); }
+            .carousel-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid #e2e8f0; background: white; color: #0d9488; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: all 0.25s ease; }
+            .carousel-btn:hover:not(:disabled) { background: linear-gradient(135deg, #1e7ae8, #0d9488); color: white; border-color: transparent; }
+            .carousel-btn:disabled { opacity: 0.4; cursor: default; }
+          `}</style>
 
           <div style={{ textAlign: 'center' }}>
             <Link to="/services" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
@@ -546,13 +478,13 @@ export default function Home() {
       </section>
 
       {/* ── WHY CHOOSE US ─────────────────────────────────── */}
-      <section style={{ padding: '96px 24px', background: 'linear-gradient(135deg, #f0f9ff, #f0fdfa)' }}>
+      <section style={{ padding: 'var(--section-y, 96px) 24px', background: 'linear-gradient(135deg, #f0f9ff, #f0fdfa)' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            style={{ textAlign: 'center', marginBottom: 64 }}
+            style={{ textAlign: 'center', marginBottom: 'var(--head-gap, 64px)' }}
           >
             <div>
               <div style={{ display: 'inline-block', background: 'linear-gradient(135deg, #e0f2fe, #ccfbf1)', borderRadius: 50, padding: '6px 16px', fontSize: 13, color: '#0d9488', fontWeight: 600, marginBottom: 16 }}>
@@ -572,11 +504,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            gap: 28,
-          }}>
+          <div className="why-choose-grid">
             {whyChoose.map(({ Icon, title, desc }, i) => (
               <motion.div
                 key={title}
@@ -613,149 +541,22 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── TESTIMONIALS ──────────────────────────────────── */}
-      <section style={{ padding: '96px 24px', background: '#0d1b2e', overflow: 'hidden' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            style={{ textAlign: 'center', marginBottom: 64 }}
-          >
-            <div>
-              <div style={{ display: 'inline-block', background: 'rgba(13,148,136,0.2)', border: '1px solid rgba(20,184,166,0.3)', borderRadius: 50, padding: '6px 16px', fontSize: 13, color: '#14b8a6', fontWeight: 600, marginBottom: 16 }}>
-                Patient Reviews
-              </div>
-            </div>
-            <h2 className="section-title" style={{
-              fontFamily: 'Playfair Display, serif',
-              fontSize: 'clamp(28px, 3.5vw, 40px)',
-              fontWeight: 700,
-              color: 'white',
-            }}>
-              What Our Patients Say
-            </h2>
-          </motion.div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: 24,
-          }}>
-            {testimonials.map((t, i) => (
-              <motion.div
-                key={t.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                style={{
-                  background: 'rgba(255,255,255,0.06)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  borderRadius: 20,
-                  padding: '28px',
-                  backdropFilter: 'blur(10px)',
-                  transition: 'all 0.3s ease',
-                }}
-                whileHover={{ background: 'rgba(13,148,136,0.12)', borderColor: 'rgba(20,184,166,0.3)' }}
-              >
-                <div style={{ display: 'flex', marginBottom: 16 }}>
-                  {[...Array(t.rating)].map((_, si) => (
-                    <Star key={si} size={16} color="#f59e0b" fill="#f59e0b" />
-                  ))}
-                </div>
-                <p style={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, fontSize: 14, marginBottom: 20 }}>
-                  "{t.text}"
-                </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <div style={{
-                    width: 42, height: 42,
-                    background: 'linear-gradient(135deg, #1e7ae8, #0d9488)',
-                    borderRadius: '50%',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 13, fontWeight: 700, color: 'white',
-                    flexShrink: 0,
-                  }}>
-                    {t.avatar}
-                  </div>
-                  <div>
-                    <div style={{ fontWeight: 600, color: 'white', fontSize: 14 }}>{t.name}</div>
-                    <div style={{ color: '#14b8a6', fontSize: 12 }}>{t.service}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── BEFORE/AFTER PROMO ────────────────────────────── */}
-      <section style={{ padding: '96px 24px', background: 'white' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 60,
-            alignItems: 'center',
-          }}>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <div style={{ display: 'inline-block', background: 'linear-gradient(135deg, #e0f2fe, #ccfbf1)', borderRadius: 50, padding: '6px 16px', fontSize: 13, color: '#0d9488', fontWeight: 600, marginBottom: 16 }}>
-                Smile Gallery
-              </div>
-              <h2 style={{
-                fontFamily: 'Playfair Display, serif',
-                fontSize: 'clamp(28px, 3.5vw, 42px)',
-                fontWeight: 700,
-                color: '#0d1b2e',
-                lineHeight: 1.25,
-                marginBottom: 20,
-              }}>
-                Real Results, Real Smiles
-              </h2>
-              <p style={{ color: '#64748b', lineHeight: 1.8, marginBottom: 32, fontSize: 15 }}>
-                See the incredible smile transformations our patients have experienced. From teeth whitening to complete smile makeovers — every result speaks for itself.
-              </p>
-              <Link to="/gallery" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                View Full Gallery <ArrowRight size={16} />
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}
-            >
-              {[
-                'https://images.pexels.com/photos/3762453/pexels-photo-3762453.jpeg?auto=compress&cs=tinysrgb&w=400',
-                'https://images.pexels.com/photos/6502305/pexels-photo-6502305.jpeg?auto=compress&cs=tinysrgb&w=400',
-                'https://images.pexels.com/photos/3779695/pexels-photo-3779695.jpeg?auto=compress&cs=tinysrgb&w=400',
-                'https://images.pexels.com/photos/6502304/pexels-photo-6502304.jpeg?auto=compress&cs=tinysrgb&w=400',
-              ].map((src, i) => (
-                <div key={i} className="card-lift" style={{ borderRadius: 16, overflow: 'hidden', aspectRatio: '1', background: '#f1f5f9' }}>
-                  <img src={src} alt="Patient smile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                </div>
-              ))}
-            </motion.div>
-          </div>
+          <style>{`
+            .why-choose-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 28px; }
+            @media (max-width: 1024px) { .why-choose-grid { grid-template-columns: repeat(2, 1fr); } }
+            @media (max-width: 640px) { .why-choose-grid { grid-template-columns: 1fr; gap: 20px; } }
+          `}</style>
         </div>
       </section>
 
       {/* ── FAQ ───────────────────────────────────────────── */}
-      <section style={{ padding: '96px 24px', background: '#f8fafc' }}>
+      <section style={{ padding: 'var(--section-y, 96px) 24px', background: '#f8fafc' }}>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            style={{ textAlign: 'center', marginBottom: 56 }}
+            style={{ textAlign: 'center', marginBottom: 'var(--head-gap, 56px)' }}
           >
             <div>
               <div style={{ display: 'inline-block', background: 'linear-gradient(135deg, #e0f2fe, #ccfbf1)', borderRadius: 50, padding: '6px 16px', fontSize: 13, color: '#0d9488', fontWeight: 600, marginBottom: 16 }}>
@@ -831,12 +632,12 @@ export default function Home() {
       </section>
 
       {/* ── ENQUIRY FORM ──────────────────────────────────── */}
-      <section style={{ padding: '96px 24px', background: 'white' }}>
+      <section style={{ padding: 'var(--section-y, 96px) 24px', background: 'white' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 64,
+            gap: 'var(--stack-gap, 64px)',
             alignItems: 'center',
           }}>
             {/* Contact info */}
@@ -892,7 +693,7 @@ export default function Home() {
 
       {/* ── CTA BANNER ────────────────────────────────────── */}
       <section style={{
-        padding: '80px 24px',
+        padding: 'var(--section-y, 80px) 24px',
         background: 'linear-gradient(135deg, #0d1b2e 0%, #1e3a5f 50%, #0d4a4a 100%)',
         textAlign: 'center',
         position: 'relative',

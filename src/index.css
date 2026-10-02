@@ -336,6 +336,28 @@ input:focus, textarea:focus, select:focus {
   .orbit-container { width: 280px; height: 280px; }
 }
 
+/* Mobile vertical rhythm. Components use these as var(--x, <desktop value>),
+   so they only take effect on phones; tablet/desktop keep their original spacing. */
+@media (max-width: 640px) {
+  :root {
+    --section-y: 56px;          /* standard sections (96px / 80px on desktop) */
+    --section-y-sm: 44px;       /* compact sections (64px on desktop) */
+    --hero-top: 112px;          /* page banners: 80px fixed navbar + 32px (160px on desktop) */
+    --hero-bottom: 48px;        /* page banners (80px on desktop) */
+    --hero-inner-bottom: 40px;  /* home hero (60px on desktop) */
+    --head-gap: 36px;           /* section heading to content (52–64px on desktop) */
+    --stack-gap: 32px;          /* two-column layouts once stacked (48–64px on desktop) */
+    --block-gap: 40px;          /* gaps between blocks within a section (48–80px on desktop) */
+    --footer-top: 48px;         /* footer top padding (64px on desktop) */
+    --footer-gap: 32px;         /* footer column gap (48px on desktop) */
+    /* footer bottom padding: 32px + clearance for the fixed mobile bottom bar (56px bar + 16px offset) */
+    --footer-bottom: calc(104px + env(safe-area-inset-bottom, 0px));
+  }
+  /* The bottom-bar clearance now lives inside the footer, so the dark footer runs behind the bar
+     instead of leaving a white strip below it. */
+  html body { padding-bottom: 0; }
+}
+
 /* Service card gradient border */
 .service-card {
   position: relative;
@@ -366,6 +388,31 @@ input:focus, textarea:focus, select:focus {
 .service-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 25px 55px rgba(30, 122, 232, 0.12);
+}
+
+/* Service card content, shared by the Home carousel and the Services page grid */
+.svc-card {
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  padding: 32px 28px;
+}
+.svc-card-icon {
+  font-size: 38px;
+  margin-bottom: 20px;
+  display: inline-flex;
+  width: 68px;
+  height: 68px;
+  background: linear-gradient(135deg, #eff8ff, #f0fdfa);
+  border-radius: 18px;
+  align-items: center;
+  justify-content: center;
+}
+.svc-card-title { font-size: 17px; font-weight: 700; color: #0d1b2e; margin-bottom: 10px; }
+.svc-card-desc { font-size: 14px; color: #64748b; line-height: 1.7; }
+@media (max-width: 640px) {
+  .svc-card { padding: 22px 14px; }
+  .svc-card-title { font-size: 15px; }
+  .svc-card-desc { font-size: 13px; }
 }
 
 /* Stat counter box */

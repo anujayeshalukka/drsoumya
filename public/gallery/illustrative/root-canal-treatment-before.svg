@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#eff8ff"/><stop offset="1" stop-color="#f0fdfa"/>
+  </linearGradient>
+  <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#e6e9ed"/><stop offset="0.5" stop-color="#b9c0c8"/><stop offset="1" stop-color="#8f98a3"/>
+  </linearGradient>
+  <clipPath id="mouth"><path d="M58,96 Q200,58 342,96 Q352,178 200,238 Q48,178 58,96 Z"/></clipPath>
+</defs>
+<rect width="400" height="300" fill="url(#bg)"/><rect x="0" y="160" width="400" height="140" fill="#f3e2cc"/><path d="M0,212 Q200,206 400,212" stroke="#ead2b4" stroke-width="2" fill="none"/><path d="M150,150 Q146,74 200,72 Q254,74 250,150 L246,162 Q240,236 224,264 Q210,236 206,170 L194,170 Q190,236 176,264 Q160,236 154,162 Z" fill="#fbfaf6" stroke="#d9d4ca" stroke-width="1.5"/><path d="M182,128 Q200,108 218,128 L214,150 L186,150 Z" fill="#b33b4a"/><path d="M190,150 Q186,210 178,256 M210,150 Q214,210 222,256" stroke="#b33b4a" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M222,84 q14,6 10,24 q-10,6 -16,-4 z" fill="#5b3a24"/><circle cx="178" cy="266" r="11" fill="#c24a55" opacity="0.45"/><circle cx="224" cy="266" r="11" fill="#c24a55" opacity="0.45"/><path d="M0,148 Q100,138 200,148 T400,148 L400,172 Q300,164 200,172 T0,172 Z" fill="#f2a5b2" opacity="0.88" stroke="#e48c9c" stroke-width="1.5"/></svg>

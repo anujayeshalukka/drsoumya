@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import mahatLogo from '../assets/mahat-logo.png';
 
 
 const SocialFacebook = () => (
@@ -21,12 +22,12 @@ const SocialYoutube = () => (
 export default function Footer() {
   return (
     <footer style={{ background: '#0d1b2e', color: '#cbd5e1' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '64px 24px 32px' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: 'var(--footer-top, 64px) 24px var(--footer-bottom, 32px)' }}>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
-          gap: 48,
-          marginBottom: 48,
+          gap: 'var(--footer-gap, 48px)',
+          marginBottom: 'var(--footer-gap, 48px)',
         }}>
           {/* Brand */}
           <div>
@@ -47,7 +48,7 @@ export default function Footer() {
             <div style={{ display: 'flex', gap: 12 }}>
               {[
                 { Icon: SocialFacebook, href: '#' },
-                { Icon: SocialInstagram, href: 'https://www.instagram.com/dr.soumyas.dental.clinic?utm_source=qr&igsh=MWw3NnhidzZlcXM4OQ%3D%3D' },
+                { Icon: SocialInstagram, href: 'https://www.instagram.com/dr.soumyas.dental.clinic' },
                 { Icon: SocialYoutube, href: '#' },
               ].map(({ Icon, href }, i) => (
                 <a key={i} href={href} target="_blank" rel="noopener noreferrer" style={{
@@ -114,14 +115,14 @@ export default function Footer() {
             <h4 style={{ color: 'white', fontWeight: 600, fontSize: 15, marginBottom: 20, letterSpacing: '0.5px' }}>Our Services</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {[
-                'General Dentistry',
-                'Dental Implants',
-                'Orthodontics & Braces',
-                'Cosmetic Dentistry',
-                'Teeth Whitening',
+                'Comprehensive Diagnosis & Treatment',
+                'Oral Cancer Screening',
+                'TMJ Pain Management',
                 'Root Canal Treatment',
-                'Pediatric Dentistry',
-                'Emergency Dental Care',
+                'Dental Veneers & Smile Designing',
+                'Orthodontic Treatment',
+                'Dental Implants',
+                'Paediatric Dentistry',
               ].map(s => (
                 <Link key={s} to="/services" style={{
                   color: '#94a3b8',
@@ -192,18 +193,19 @@ export default function Footer() {
           alignItems: 'center',
         }}>
           <p style={{ fontSize: 13, color: '#64748b' }}>
-            © 2024 Dr. Soumya's Dental Clinic. All rights reserved.
+            © 2026 Dr. Soumya's Dental Clinic. All rights reserved.
           </p>
-          <div style={{ display: 'flex', gap: 20 }}>
-            {['Privacy Policy', 'Terms of Service', 'Sitemap'].map(t => (
-              <a key={t} href="#" style={{ fontSize: 13, color: '#64748b', textDecoration: 'none' }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#14b8a6'}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#64748b'}
-              >
-                {t}
-              </a>
-            ))}
-          </div>
+          <a
+            href="https://www.wearemahat.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="MAHAT"
+            style={{ display: 'inline-flex', alignItems: 'center', opacity: 0.7, transition: 'opacity 0.25s ease' }}
+            onMouseEnter={e => (e.currentTarget as HTMLElement).style.opacity = '1'}
+            onMouseLeave={e => (e.currentTarget as HTMLElement).style.opacity = '0.7'}
+          >
+            <img src={mahatLogo} alt="MAHAT" style={{ height: 20, width: 'auto', display: 'block' }} />
+          </a>
         </div>
       </div>
     </footer>

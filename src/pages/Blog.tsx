@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Calendar, Clock, ArrowRight, Tag } from 'lucide-react';
+import { useSeo } from '../lib/seo';
 
 const posts = [
   {
@@ -52,27 +53,22 @@ const posts = [
     img: 'https://images.pexels.com/photos/6749773/pexels-photo-6749773.jpeg?auto=compress&cs=tinysrgb&w=600',
     color: '#f0fdf4',
   },
-  {
-    id: 6,
-    title: 'Understanding Gum Disease: Early Signs & Prevention',
-    excerpt: 'Gum disease affects millions of people silently. Learn to spot the early warning signs, understand the stages from gingivitis to periodontitis, and how to prevent it.',
-    category: 'Periodontal Health',
-    date: 'September 28, 2024',
-    readTime: '6 min read',
-    img: 'https://images.pexels.com/photos/3762469/pexels-photo-3762469.jpeg?auto=compress&cs=tinysrgb&w=600',
-    color: '#fff1f2',
-  },
 ];
 
-const categories = ['All', 'Oral Health Tips', 'Dental Implants', 'Cosmetic Dentistry', 'Pediatric Dentistry', 'Oral Hygiene', 'Periodontal Health'];
+const categories = ['All', 'Oral Health Tips', 'Dental Implants', 'Cosmetic Dentistry', 'Pediatric Dentistry', 'Oral Hygiene'];
 
 export default function Blog() {
+  useSeo({
+    title: "Dental Health Blog | Dr. Soumya's Dental Clinic, Maradu",
+    description: "Dental and oral health articles from Dr. Soumya's Dental Clinic in Maradu, Ernakulam, Kerala.",
+    path: '/blog',
+  });
   return (
     <div>
       {/* Hero */}
       <section style={{
         background: 'linear-gradient(135deg, #0d1b2e 0%, #1e3a5f 60%, #0d4a4a 100%)',
-        padding: '160px 24px 80px',
+        padding: 'var(--hero-top, 160px) 24px var(--hero-bottom, 80px)',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
@@ -118,7 +114,7 @@ export default function Blog() {
       </section>
 
       {/* Posts grid */}
-      <section style={{ padding: '64px 24px', background: '#f8fafc' }}>
+      <section style={{ padding: 'var(--section-y-sm, 64px) 24px', background: '#f8fafc' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           {/* Featured post */}
           <motion.div
@@ -221,7 +217,7 @@ export default function Blog() {
       </section>
 
       {/* Newsletter */}
-      <section style={{ padding: '80px 24px', background: 'linear-gradient(135deg, #0d1b2e, #1e3a5f)', textAlign: 'center' }}>
+      <section style={{ padding: 'var(--section-y, 80px) 24px', background: 'linear-gradient(135deg, #0d1b2e, #1e3a5f)', textAlign: 'center' }}>
         <div style={{ maxWidth: 560, margin: '0 auto' }}>
           <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(24px, 3.5vw, 36px)', fontWeight: 700, color: 'white', marginBottom: 14 }}>
             Subscribe to Dental Health Tips

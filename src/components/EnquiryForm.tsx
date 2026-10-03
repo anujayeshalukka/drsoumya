@@ -3,15 +3,30 @@ import { Send, CircleCheck as CheckCircle } from 'lucide-react';
 import { countryCodes } from '../utils/countryCodes';
 
 const services = [
-  'General Dentistry',
-  'Teeth Cleaning',
-  'Dental Implants',
+  'Comprehensive Diagnosis & Treatment',
+  'Oral Lesion & Ulcer Management',
+  'Oral Examination & Diagnosis',
+  'Oral Cancer Screening',
+  'TMJ Pain Management',
+  'Orofacial Pain Management',
+  'Oral Potentially Malignant Disorders Screening',
+  'Salivary Gland Disorders',
+  'Bruxism & Teeth Grinding Management',
+  'Digital X-Ray',
+  'Dental Restoration',
   'Root Canal Treatment',
-  'Orthodontics & Braces',
-  'Cosmetic Dentistry',
-  'Teeth Whitening',
-  'Pediatric Dentistry',
-  'Emergency Dental Care',
+  'Dental Veneers & Smile Designing',
+  'Ultrasonic Scaling & Polishing',
+  'Periodontal Disease Treatment',
+  'Orthodontic Treatment',
+  'Dental Implants',
+  'Paediatric Dentistry',
+  'Dental Extraction and Impaction (Surgical Removal)',
+  'Dental Bleaching',
+  'Removable & Fixed Dentures',
+  'Clear Aligners',
+  'Preventive Dentistry',
+  'Mouthguards & Occlusal Splints',
   'Other',
 ];
 
@@ -87,7 +102,7 @@ export default function EnquiryForm() {
           Enquiry Sent Successfully!
         </h3>
         <p style={{ color: '#64748b', lineHeight: 1.7, marginBottom: 24 }}>
-          Thank you for reaching out! Our team will get back to you within 2–4 hours during business hours.
+          Thank you for reaching out! Our team will get back to you.
         </p>
         <button
           onClick={() => setSuccess(false)}

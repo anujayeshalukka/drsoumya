@@ -1,16 +1,22 @@
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import EnquiryForm from '../components/EnquiryForm';
+import { useSeo } from '../lib/seo';
 
 const WA_MESSAGE = encodeURIComponent('Hello, I would like to know more about your dental services and book an appointment.');
 
 export default function Contact() {
+  useSeo({
+    title: "Contact Dr. Soumya's Dental Clinic | Maradu, Ernakulam",
+    description: "Contact Dr. Soumya's Dental Clinic in Maradu, Ernakulam, Kerala for dental consultations and appointments. Find our clinic location, contact details and opening hours.",
+    path: '/contact',
+  });
   return (
     <div>
       {/* Hero */}
       <section style={{
         background: 'linear-gradient(135deg, #0d1b2e 0%, #1e3a5f 60%, #0d4a4a 100%)',
-        padding: '160px 24px 80px',
+        padding: 'var(--hero-top, 160px) 24px var(--hero-bottom, 80px)',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
@@ -32,9 +38,9 @@ export default function Contact() {
       </section>
 
       {/* Contact cards */}
-      <section style={{ padding: '64px 24px', background: '#f8fafc' }}>
+      <section style={{ padding: 'var(--section-y-sm, 64px) 24px', background: '#f8fafc' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 24, marginBottom: 64 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 24, marginBottom: 'var(--block-gap, 64px)' }}>
             {[
               {
                 Icon: Phone,
@@ -55,7 +61,7 @@ export default function Contact() {
               {
                 Icon: MapPin,
                 title: 'Visit Us',
-                lines: ['Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Ernakulam, Kerala-682304'],
+                lines: ['Johns Arcade, Opp. PS Mission Hospital, Kundannoor, Maradu, Ernakulam, Kerala 682304'],
                 href: 'https://maps.app.goo.gl/vYQXXwXyDi3qpxH97',
                 gradient: 'linear-gradient(135deg, #fff1f2, #ffe4e6)',
                 iconColor: '#e11d48',
@@ -98,7 +104,7 @@ export default function Contact() {
           </div>
 
           {/* Main content: form + map */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 48, alignItems: 'start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--stack-gap, 48px)', alignItems: 'start' }}>
             <EnquiryForm />
 
             {/* Map + WhatsApp */}
@@ -188,7 +194,7 @@ export default function Contact() {
                 <div>
                   <div style={{ fontWeight: 700, color: '#9a3412', fontSize: 14, marginBottom: 4 }}>Dental Emergency?</div>
                   <div style={{ color: '#7c2d12', fontSize: 13, lineHeight: 1.6 }}>
-                    For urgent dental pain, broken teeth, or trauma, call us immediately at <strong style={{ whiteSpace: 'nowrap' }}><a href="tel:+918138887081" style={{ color: '#9a3412', textDecoration: 'underline' }}>+91 81388 87081</a></strong>. We offer same-day emergency appointments.
+                    For urgent dental pain, broken teeth, or trauma, call us immediately at <strong style={{ whiteSpace: 'nowrap' }}><a href="tel:+918138887081" style={{ color: '#9a3412', textDecoration: 'underline' }}>+91 81388 87081</a></strong>.
                   </div>
                 </div>
               </div>
